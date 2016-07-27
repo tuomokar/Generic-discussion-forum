@@ -1,10 +1,11 @@
-# Tietokantasovelluksen esittelysivu
+# Database application - a discussion forum
 
-Yleisiä linkkejä:
+This repository is for the course Database application, done in summer 2016 at Helsinki University.
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+The subject is a discussion forum.
 
-## Työn aihe
+Links:
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+* [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
+* [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.md)
+
