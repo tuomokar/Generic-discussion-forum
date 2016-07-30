@@ -1,15 +1,14 @@
 # Introduction
 
-This app is for a discussion forum, written with PHP using PostgreSQL as the database. The application runs at the users.cs.helsinki.fi server of the Department of Computer science of University of Helsinki.
+This app is for a discussion forum database application, written with PHP using PostgreSQL as the database. The application runs at the users.cs.helsinki.fi server of the Department of Computer science of University of Helsinki.
 
-People can create new posts and read existing ones. Posts can be replies to another post.
+# Project description
 
-Posts can be searched by the poster's name or by the subject or age of the post. Readers can also follow the reply chain.
-By default only posts young enough are shown, along with information on whether or not the reader or other people of the community have read it. This information is viewable by any reader. Readers always identify themselves.
+The key function of the forum is to have discussion threads that can contain multiple posts. Any non logged in user (from now on referring to them as 'visitors' in this document) can read any of these threads and posts and also register and log in. Logged in users can also create new threads and posts. Users can edit their own posts and see and edit their user info. Posts can be replies to another post. Users can also see each other's user info.
 
-The administrator of the system has their own user interface through which they can administrate the user information of the users and what groups they belong to. They can also clean up the database and define topics the posts can be grouped by.
+Admin users can remove and edit posts made by anyone. They can also delete threads completely and edit user info of any user. Besides that, they can also handle various functions related to groups - create, remove and edit them. By editing a group, they can change the group info and add and remove users.
 
 # Use cases
 
-![Use cases](/use_case_diagram.png)
+![Use cases](./use_case_diagram.png)
 _Done with [creatly](http://creately.com/)_
