@@ -11,10 +11,5 @@ The administrator of the system has their own user interface through which they 
 
 # Use cases
 
-* logging in
-* creating a post
-* showing posts by different criteria
-* handling a group - adding, editing and removing a user
-* creating and editing a reply
-* removing posts
-* defining, editing and removing topics
+![Use cases](/use_case_diagram.png)
+_Done with [creatly](http://creately.com/)_
