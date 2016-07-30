@@ -11,4 +11,4 @@ Admin users can remove and edit posts made by anyone. They can also delete threa
 # Use cases
 
 ![Use cases](./use_case_diagram.png)
-_Done with [creatly](http://creately.com/)_
+_Done with [creately](http://creately.com/)_
