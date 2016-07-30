@@ -1,31 +1,31 @@
 <?php
 
-  // Laitetaan virheilmoitukset näkymään
+  // set error messages to the view
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
-  // Selvitetään, missä kansiossa index.php on
+  // look up the location of index.php is
   $script_name = $_SERVER['SCRIPT_NAME'];
   $explode =  explode('/', $script_name);
 
   if($explode[1] == 'index.php'){
     $base_folder = '';
-  }else{
+  } else {
     $base_folder = $explode[1];
   }
 
-  // Määritetään sovelluksen juuripolulle vakio BASE_PATH
+  // declare app's root to be in constant BASE_PATH
   define('BASE_PATH', '/' . $base_folder);
 
-  // Luodaan uusi tai palautetaan olemassaoleva sessio
+  // create new or return current session
   if(session_id() == '') {
     session_start();
   }
 
-  // Asetetaan vastauksen Content-Type-otsake, jotta ääkköset näkyvät normaalisti
+  // set the response's Content-Type header
   header('Content-Type: text/html; charset=utf-8');
 
-  // Otetaan Composer käyttöön
+  // take Composer into use
   require 'vendor/autoload.php';
 
   $routes = new \Slim\Slim();
@@ -35,7 +35,7 @@
     DB::test_connection();
   });
 
-  // Otetaan reitit käyttöön
+  // take routes into use
   require 'config/routes.php';
 
   $routes->run();
