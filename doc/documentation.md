@@ -13,7 +13,6 @@ Logged in users are basic users of the site.
 Admin users are administrators with full rights to everything. They are also logged in users obviously.
 
 ![Use cases](./use_case_diagram.png)
-_Done with [creately](http://creately.com/)_
 
 #### Use case descriptions:
 
@@ -42,9 +41,12 @@ _Done with [creately](http://creately.com/)_
 ###### Admin:
 * Edit posts
   * Admins can edit posts made by anyone
-* Handle groups
+* Handle user groups
   * Admins can create groups to which users can be put
   * Group info can be edited, and users can be removed from groups
+* Handle topic groups
+  * Admins can create groups to which topics by which topics can be organized
+  * Topic group info can be edited, and they can be removed
 * Other functions:
   * Edit any post
   * Edit any users' info
