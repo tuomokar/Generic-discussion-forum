@@ -2,10 +2,28 @@
 
 {% block content %}
   <div class="page-header">
-    <h1>Tervetuloa Tsoha Bootstrappiin!</h1>
+    <h1>Welcome to Gendifo</h1>
+    <p>Gendifo is <i>the</i> generic discussion forum. </p>
+    <p>Just looking for something generic to talk about? You're in the right place!</p>
   </div>
 
-  <p>
-    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Tutustu materiaaliin <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </p>
+<!-- Topic groups -->
+<div id="topic-groups">
+  <div class="topic-group">
+    <h3>
+      <a href="{{base_path}}/topic-groups/1">The generic discussion <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </h3>
+    <p class="topic-group-info">
+      This is where the real magic of this forum lies!
+    </p>
+  </div>
+  <div class="topic-group">
+    <h3>
+      <a href="{{base_path}}/topic-groups/2">More specific discussion <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </h3>
+    <p class="topic-group-info">
+      For those rare times you might wanna talk about something a bit more specific!
+    </p>
+  </div>
+</div>
 {% endblock %}

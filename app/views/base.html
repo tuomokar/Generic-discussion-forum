@@ -20,7 +20,7 @@
   <body>
 
   <header>
-    <!-- Navigation -->
+    <!-- Nav bar -->
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
 
@@ -42,10 +42,12 @@
         </div>
       </div>
     </nav>
+    <!-- logo -->
     <div id="header-logo">
-      <img src="{{base_path}}/assets/images/leaf.jpg">
+      <a href="{{base_path}}"><img src="{{base_path}}/assets/images/leaf.jpg"></a>
     </div>
   </header>
+
     <!-- Main content -->
     <div id="main-container">
       {% block content %}{% endblock %}
