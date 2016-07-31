@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div xmlns:style="http://www.w3.org/1999/xhtml">
+    <div>
+        <a href="{{base_path}}/threads/new" class="btn btn-default new-thread-button"><h3>Post new thread</h3></a>
+    </div>
+
+    <div>
+        <h1>Threads in forum: Generic discussion</h1>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Thread</th>
+                <th class="text-right">Starter</th>
+                <th class="text-right">Posts</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="{{base_path}}/threads/1" class="btn" style="text-decoration:none">Generic people</a></td>
+                <td class="text-right">user1</td>
+                <td class="text-right">2</td>
+            </tr>
+            <tr>
+                <td><a href="#" class="btn">Generic functions</a></td>
+                <td class="text-right">user2</td>
+                <td class="text-right">1</td>
+            </tr>
+            <tr>
+                <td><a href="#" class="btn">Generic trademarks</a></td>
+                <td class="text-right">user3</td>
+                <td class="text-right">1</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

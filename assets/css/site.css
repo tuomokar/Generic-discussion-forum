@@ -28,3 +28,7 @@ img {
 .topic-group-info {
   text-indent: 20px;
 }
+
+.new-thread-button {
+  border-radius: 10px;
+}
