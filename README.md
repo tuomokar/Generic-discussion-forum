@@ -7,7 +7,7 @@ The subject is a discussion forum.
 Links:
 
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
-* [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.md)
+* [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
 
 # Project description
