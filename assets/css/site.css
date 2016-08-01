@@ -32,3 +32,62 @@ img {
 .new-thread-button {
   border-radius: 10px;
 }
+
+.thread {
+  background-color: #596a7b;
+  margin: 1em;
+  padding: 1em;
+  width: 90%;
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post {
+  width: 95%;
+  border-style: solid;
+  border-color: #2b3e50;
+  border-width: 1px;
+
+  padding-bottom: 1em;
+
+  display: flex;
+}
+
+.post-info {
+  width: 13%;
+
+  border-right: solid;
+  border-color: #2b3e50;
+  border-width: 1px;
+
+  padding-left: 0.5em;
+
+  font-size: xx-small;
+  float: left;
+}
+
+.post-info a {
+  text-decoration: none;
+}
+
+.post-text {
+  width: 87%;
+  padding-top: 0.5em;
+  margin-left: 1em;
+}
+
+.thread-title {
+  margin-bottom: 2em;
+}
+
+.post-reply {
+  margin-top: 2em;
+  display:inline-block;
+  overflow:auto;
+}
+
+.post-reply-btn {
+  margin-top: 2em;
+  border-radius: 10px;
+}
