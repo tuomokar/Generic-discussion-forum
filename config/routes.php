@@ -5,7 +5,7 @@ $routes -> get('/', function() {
 });
 
 $routes -> get('/topic-groups/1', function() {
-    TopicGroupController::topicGroup1();
+    TopicGroupController::topicGroupShow();
 });
 
 $routes -> get('/threads/1', function() {
