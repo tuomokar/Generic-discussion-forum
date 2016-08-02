@@ -91,3 +91,9 @@ img {
   margin-top: 2em;
   border-radius: 10px;
 }
+
+.back-to-threads-btn {
+  float: right;
+  border-radius: 4px;
+  font-size: xx-small;
+}
