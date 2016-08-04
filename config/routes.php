@@ -51,3 +51,19 @@ $routes -> get('/users/new', function() {
 $routes -> get('/users/', function() {
     UserController::userList();
 });
+
+// -------------- Posts ------------------
+// temp address
+$routes -> get('/posts/1', function() {
+    PostController::postShow();
+});
+
+// temp address
+$routes -> get('/posts/1/edit', function() {
+    PostController::postEdit();
+});
+
+// temp address
+$routes -> get('/threads/1/posts/new', function() {
+    PostController::postNew();
+});

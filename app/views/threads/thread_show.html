@@ -24,6 +24,15 @@
                 <h6><a href="{{base_path}}/users/1">user1</a></h6>
                 Member</br>
                 01-08-2016, 10:00 AM
+
+                <div class="margin-up">
+                    <div>
+                        <p><a href="{{base_path}}/posts/1/edit" class="btn btn-warning">Edit</a></p>
+                    </div>
+                    <div>
+                        <p><a href="#" class="btn btn-danger">Remove</a></p>
+                    </div>
+                </div>
             </div>
             <div class="post-text">
                 <p>
@@ -61,21 +70,35 @@
                     quam, suscipit at tristique nec, mollis sit amet tellus.
                 </p>
             </div>
+            <div class="post-number">
+                <a href="{{base_path}}/posts/1">#1</a>
+            </div>
         </div>
         <div class="post">
             <div class="post-info">
                 <h6><a href="#">user2</a></h6>
                 Member</br>
                 01-08-2016, 10:04 AM
+                <div class="margin-up">
+                    <div>
+                        <p><a href="{{base_path}}/posts/1/edit" class="btn btn-warning">Edit</a></p>
+                    </div>
+                    <div>
+                        <p><a href="#" class="btn btn-danger">Remove</a></p>
+                    </div>
+                </div>
             </div>
             <div class="post-text">
                 <p>Generic second post here.</p>
+            </div>
+            <div class="post-number">
+                <a href="#">#2</a>
             </div>
         </div>
     </div>
     <!-- Content of the thread ends -->
     <div>
-        <a href="#" class="btn btn-primary post-reply-btn">Post reply</a>
+        <a href="{{base_path}}/threads/1/posts/new" class="btn btn-primary post-reply-btn">Post reply</a>
     </div>
 </div>
 <!-- Thread area ends -->

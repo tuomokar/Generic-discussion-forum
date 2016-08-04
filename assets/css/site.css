@@ -43,6 +43,10 @@ img {
   overflow: hidden;
 }
 
+.thread a {
+  text-decoration: none;
+}
+
 .post {
   width: 95%;
   border-style: solid;
@@ -72,9 +76,18 @@ img {
 }
 
 .post-text {
-  width: 87%;
+  width: 83%;
   padding-top: 0.5em;
   margin-left: 1em;
+}
+
+.post-number {
+  width: 4%;
+  float: right;
+}
+
+.post-number a {
+  text-decoration: none;
 }
 
 .margin-down {

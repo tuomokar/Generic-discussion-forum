@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- New post -->
+<div>
+    <div>
+        <h1>Post new reply</h1>
+    </div>
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="post-text">Message:</label>
+                <textarea class="form-control" rows=7 id="post-text"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Reply</button>
+        </form>
+    </div>
+</div>
+<!-- New post ends -->
+
+{% endblock %}
