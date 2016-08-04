@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <div>
+        <h1>User1</h1>
+    </div>
+    <div>
+        <p>Man, 40-year-old, accountant</p>
+    </div>
+    <div>
+        <p>
+            Registered: 31.7.2016
+        </p>
+    </div>
+
+    <div>
+        <p><a href="{{base_path}}/users/1/edit" class="btn btn-warning">Edit</a></p>
+    </div>
+    <div>
+        <p><a href="#" class="btn btn-danger">Remove</a></p>
+    </div>
+</div>
+
+{% endblock %}

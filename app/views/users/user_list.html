@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+
+    <h1>Users</h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th class="text-right">Registered</th>
+            <th class="text-right">Post count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href="{{base_path}}/users/1" class="btn">user1</a></td>
+            <td class="text-right">31.7.2016</td>
+            <td class="text-right">2</td>
+            <td><a href="{{base_path}}/users/1/edit" class="btn btn-warning pull-right">Edit</a></td>
+            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
+        </tr>
+        <tr>
+            <td><a href="#" class="btn">user2</a></td>
+            <td class="text-right">31.7.2016</td>
+            <td class="text-right">1</td>
+            <td><a href="#" class="btn btn-warning pull-right">Edit</a></td>
+            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
+        </tr>
+        <tr>
+            <td><a href="#" class="btn">user3</a></td>
+            <td class="text-right">31.7.2016</td>
+            <td class="text-right">1</td>
+            <td><a href="#" class="btn btn-warning pull-right">Edit</a></td>
+            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

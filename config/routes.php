@@ -4,6 +4,7 @@ $routes -> get('/', function() {
     MainController::index();
 });
 
+// -------------- TOPIC GROUPS ------------------
 // temp address
 $routes -> get('/topic-groups/1', function() {
     TopicGroupController::topicGroupShow();
@@ -18,6 +19,7 @@ $routes -> get('/topic-groups/new', function() {
     TopicGroupController::topicGroupNew();
 });
 
+// -------------- THREADS ------------------
 // temp address
 $routes -> get('/threads/1', function() {
     ThreadController::threadShow();
@@ -30,4 +32,22 @@ $routes -> get('/threads/1/edit', function() {
 
 $routes -> get('/threads/new', function() {
     ThreadController::threadNew();
+});
+
+// -------------- Users ------------------
+$routes -> get('/users/1', function() {
+    UserController::userShow();
+});
+
+// temp address
+$routes -> get('/users/1/edit', function() {
+    UserController::userEdit();
+});
+
+$routes -> get('/users/new', function() {
+    UserController::userNew();
+});
+
+$routes -> get('/users/', function() {
+    UserController::userList();
 });
