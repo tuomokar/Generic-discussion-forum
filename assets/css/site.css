@@ -29,7 +29,7 @@ img {
   text-indent: 20px;
 }
 
-.new-thread-button {
+.new-button {
   border-radius: 10px;
 }
 
@@ -108,4 +108,8 @@ img {
   float: right;
   margin-right: 1em;
   margin-bottom: 1em;
+}
+
+.margin-up {
+  margin-top: 2em;
 }

@@ -10,6 +10,15 @@ $routes -> get('/topic-groups/1', function() {
 });
 
 // temp address
+$routes -> get('/topic-groups/1/edit', function() {
+    TopicGroupController::topicGroupEdit();
+});
+
+$routes -> get('/topic-groups/new', function() {
+    TopicGroupController::topicGroupNew();
+});
+
+// temp address
 $routes -> get('/threads/1', function() {
     ThreadController::threadShow();
 });
