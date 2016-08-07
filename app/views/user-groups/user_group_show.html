@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <div>
+        <h1>Users of group Truly generic</h1>
+        <p>
+            Users who have achieved the state of true genericity.
+        </p>
+        <div class="pull-right">
+            <a href="{{base_path}}/user-groups/1/edit" class="btn btn-warning pull-right">Edit</a>
+        </div>
+        <p class="margin-up">
+            Created: 31.7.2016
+        </p>
+        <p>
+            Last updated: 31.7.2016
+        </p>
+        <p>
+            2 members
+        </p>
+    </div>
+    <div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th class="text-right">Registered</th>
+                <th class="text-right">Added</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="{{base_path}}/users/1" class="btn">user1</a></td>
+                <td class="text-right">31.7.2016</td>
+                <td class="text-right">31.7.2016</td>
+                <td><a href="#" class="btn btn-warning pull-right">Remove</a></td>
+            </tr>
+            <tr>
+                <td><a href="#" class="btn">user2</a></td>
+                <td class="text-right">31.7.2016</td>
+                <td class="text-right">31.7.2016</td>
+                <td><a href="#" class="btn btn-warning pull-right">Remove</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <form>
+            <h3 class="margin-up">Add user</h3>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <select class="form-control" id="username">
+                    <option>user3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add user</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

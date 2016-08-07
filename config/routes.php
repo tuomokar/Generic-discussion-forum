@@ -67,3 +67,23 @@ $routes -> get('/posts/1/edit', function() {
 $routes -> get('/threads/1/posts/new', function() {
     PostController::postNew();
 });
+
+// -------------- Groups ------------------
+// temp address
+$routes -> get('/user-groups/1', function() {
+    UserGroupController::userGroupShow();
+});
+
+// temp address
+$routes -> get('/user-groups/1/edit', function() {
+    UserGroupController::userGroupEdit();
+});
+
+// temp address
+$routes -> get('/user-groups/new', function() {
+    UserGroupController::userGroupNew();
+});
+
+$routes -> get('/user-groups', function() {
+    UserGroupController::userGroupList();
+});
