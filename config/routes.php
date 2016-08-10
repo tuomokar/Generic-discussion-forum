@@ -1,5 +1,10 @@
 <?php
 
+// for testing purposes
+$routes -> get('/testingtesting', function() {
+    TestController::sandbox();
+});
+
 $routes -> get('/', function() {
     MainController::index();
 });
