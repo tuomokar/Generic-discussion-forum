@@ -1,6 +1,6 @@
 CREATE TABLE Forum_user(
   id SERIAL PRIMARY KEY,
-  username varchar(50) NOT NULL,
+  username varchar(50) NOT NULL UNIQUE,
   password varchar(100) NOT NULL,
   info varchar(400),
   created date,
@@ -17,7 +17,8 @@ CREATE TABLE User_group(
 
 CREATE TABLE Membership(
   forum_user_id INTEGER REFERENCES Forum_user(id),
-  user_group_id INTEGER REFERENCES User_group(id)
+  user_group_id INTEGER REFERENCES User_group(id),
+  created DATE
 );
 
 CREATE TABLE Topic_group(
@@ -40,6 +41,6 @@ CREATE TABLE Post(
   user_id INTEGER REFERENCES Forum_user(id),
   thread_id INTEGER REFERENCES Thread(id),
   message TEXT,
-  created DATE,
-  edited DATE
+  created TIMESTAMP,
+  edited TIMESTAMP
 );
