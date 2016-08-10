@@ -2,47 +2,37 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>Welcome to Gendifo</h1>
-  <p>Gendifo is <i>the</i> generic discussion forum. </p>
-  <p>Just looking for something generic to talk about? You're in the right place!</p>
+    <h1>Welcome to Gendifo</h1>
+    <p>Gendifo is <i>the</i> generic discussion forum. </p>
+    <p>Just looking for something generic to talk about? You're in the right place!</p>
 </div>
 
 <!-- Topic groups -->
 <div class="topic-groups">
-  <div class="topic-group">
-    <h3>
-      <a href="{{base_path}}/topic-groups/1">Generic discussion <span class="glyphicon glyphicon-chevron-right"></span></a>
-    </h3>
-    <div class="edit">
-      <a href="{{base_path}}/topic-groups/1/edit" class="btn btn-warning">Edit</a>
+
+    {% for group in topicGroups %}
+    <div class="topic-group">
+        <h3>
+            <a href="{{base_path}}/topic-groups/{{group.id}}">{{group.name}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </h3>
+        <div class="edit">
+            <a href="{{base_path}}/topic-groups/{{group.id}}/edit" class="btn btn-warning">Edit</a>
+        </div>
+        <div class="remove">
+            <a href="#" class="btn btn-danger">Remove</a>
+        </div>
+        <p class="topic-group-info">
+            {{group.info}}
+        </p>
     </div>
-    <div class="remove">
-      <a href="#" class="btn btn-danger">Remove</a>
-    </div>
-    <p class="topic-group-info">
-      This is where the real magic of this forum lies!
-    </p>
-  </div>
-  <div class="topic-group">
-    <h3>
-      <a href="#">More specific discussion <span class="glyphicon glyphicon-chevron-right"></span></a>
-    </h3>
-    <div class="edit">
-      <a href="#" class="btn btn-warning">Edit</a>
-    </div>
-    <div class="remove">
-      <a href="#" class="btn btn-danger">Remove</a>
-    </div>
-    <p class="topic-group-info">
-      For those rare times you might wanna talk about something a bit more specific!
-    </p>
-  </div>
+    {% endfor %}
+
 </div>
 
 <!-- Create new topic group-->
 <div>
-  <div>
-    <a href="{{base_path}}/topic-groups/new" class="btn btn-primary new-button margin-up"><h4>Create new topic group</h4></a>
-  </div>
+    <div>
+        <a href="{{base_path}}/topic-groups/new" class="btn btn-primary new-button margin-up"><h4>Create new topic group</h4></a>
+    </div>
 </div>
 {% endblock %}

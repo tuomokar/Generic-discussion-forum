@@ -3,6 +3,7 @@
 class MainController extends BaseController {
 
     public static function index() {
-        View::make('home.html');
+        $topicGroups = TopicGroup::all();
+        View::make('home.html', array('topicGroups' => $topicGroups));
     }
 }

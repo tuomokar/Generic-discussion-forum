@@ -11,13 +11,13 @@ $routes -> get('/', function() {
 
 // -------------- TOPIC GROUPS ------------------
 // temp address
-$routes -> get('/topic-groups/1', function() {
-    TopicGroupController::topicGroupShow();
+$routes -> get('/topic-groups/:id', function($id) {
+    TopicGroupController::topicGroupShow($id);
 });
 
 // temp address
-$routes -> get('/topic-groups/1/edit', function() {
-    TopicGroupController::topicGroupEdit();
+$routes -> get('/topic-groups/:id/edit', function($id) {
+    TopicGroupController::topicGroupEdit($id);
 });
 
 $routes -> get('/topic-groups/new', function() {

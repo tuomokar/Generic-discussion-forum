@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- -->
+<!-- Show topic group -->
 <div>
     <div class="margin-down">
         <a href="{{base_path}}/threads/new" class="btn btn-primary new-button pull-right"><h4>Post new thread</h4></a>
-        <h1>Threads in forum: Generic discussion</h1>
+        <h1>Threads in forum: {{topicGroup.name}}</h1>
     </div>
 
     <div>
@@ -36,4 +36,5 @@
         </table>
     </div>
 </div>
+<!-- Show topic group ends -->
 {% endblock %}
