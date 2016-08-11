@@ -10,18 +10,21 @@ $routes -> get('/', function() {
 });
 
 // -------------- TOPIC GROUPS ------------------
-// temp address
+
+$routes -> get('/topic-groups/new', function() {
+    TopicGroupController::topicGroupNew();
+});
+
+$routes -> post('/topic-groups/new', function() {
+    TopicGroupController::topicGroupSave();
+});
+
 $routes -> get('/topic-groups/:id', function($id) {
     TopicGroupController::topicGroupShow($id);
 });
 
-// temp address
 $routes -> get('/topic-groups/:id/edit', function($id) {
     TopicGroupController::topicGroupEdit($id);
-});
-
-$routes -> get('/topic-groups/new', function() {
-    TopicGroupController::topicGroupNew();
 });
 
 // -------------- THREADS ------------------

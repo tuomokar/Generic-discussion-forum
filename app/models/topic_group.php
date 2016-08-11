@@ -45,4 +45,13 @@ class TopicGroup extends BaseModel {
         }
         return null;
     }
+
+    public function save() {
+        $query = DB::connection() -> prepare('INSERT INTO topic_group (name, info, created) VALUES (:name, :info, now()) RETURNING id');
+        $query -> execute(array('name' => $this -> name, 'info' => $this -> info));
+
+        $row = $query -> fetch();
+
+        $this -> id = $row['id'];
+    }
 }

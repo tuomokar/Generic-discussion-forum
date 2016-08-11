@@ -16,4 +16,17 @@ class TopicGroupController extends BaseController{
         View::make('topic-groups/topic_group_new.html');
     }
 
+    // post new
+    public static function topicGroupSave() {
+        $params = $_POST;
+
+        $topicGroup = new TopicGroup(array(
+            'name' => $params['name'],
+            'info' => $params['info']
+        ));
+        $topicGroup -> save();
+
+        Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Created new topic group'));
+    }
+
 }
