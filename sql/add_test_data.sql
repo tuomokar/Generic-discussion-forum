@@ -22,5 +22,5 @@ Vivamus varius varius odio, non accumsan quam tincidunt cursus. Phasellus consec
 Morbi et augue ex. Donec eget nibh iaculis, varius lorem in, rutrum mauris. Duis feugiat tortor tortor, a pretium tellus convallis tempor. Maecenas a odio quis lorem volutpat imperdiet eget eget metus. Vivamus lobortis, metus quis dictum posuere, risus velit ultricies lorem, quis gravida sem neque tristique massa. Sed lacus metus, fermentum nec pulvinar et, fringilla et justo. Cras sit amet venenatis dui. Curabitur turpis ligula, porta in commodo nec, sollicitudin eget felis. Sed condimentum dui vel magna congue, a commodo nunc molestie. Nullam dui quam, suscipit at tristique nec, mollis sit amet tellus.', '2016-08-01', '2016-08-01');
 INSERT INTO Post (user_id, thread_id, message, created, edited) VALUES ('2', '1', 'Generic second post here.', '2016-08-01', '2016-08-01');
 
-INSERT INTO Post (user_id, thread_id, message, created, edited) VALUES ('2', '2', 'Generic functions are so cool aren''t they?', '2016-07-31', '2016-07-31');
-INSERT INTO Post (user_id, thread_id, message, created, edited) VALUES ('3', '3', 'Trademarks suck!', '2016-07-31', '2016-07-31');
+INSERT INTO Post (user_id, thread_id, message, created) VALUES ('2', '2', 'Generic functions are so cool aren''t they?', '2016-07-31');
+INSERT INTO Post (user_id, thread_id, message, created) VALUES ('3', '3', 'Trademarks suck!', '2016-07-31');

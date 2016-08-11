@@ -4,7 +4,7 @@ CREATE TABLE Forum_user(
   password varchar(100) NOT NULL,
   info varchar(400),
   created date,
-  edited date
+  edited date DEFAULT current_date
 );
 
 CREATE TABLE User_group(
@@ -12,13 +12,13 @@ CREATE TABLE User_group(
   name varchar(50) NOT NULL,
   info varchar(400) NOT NULL,
   created date,
-  edited date
+  edited date DEFAULT current_date
 );
 
 CREATE TABLE Membership(
   forum_user_id INTEGER REFERENCES Forum_user(id),
   user_group_id INTEGER REFERENCES User_group(id),
-  created DATE
+  created DATE DEFAULT current_date
 );
 
 CREATE TABLE Topic_group(
@@ -26,7 +26,7 @@ CREATE TABLE Topic_group(
   name varchar(50) NOT NULL,
   info varchar(400) NOT NULL,
   created DATE,
-  edited DATE
+  edited DATE DEFAULT current_date
 );
 
 CREATE TABLE Thread(
@@ -34,7 +34,7 @@ CREATE TABLE Thread(
   topic_group_id INTEGER REFERENCES Topic_group(id),
   title VARCHAR(50),
   created DATE,
-  edited DATE
+  edited DATE DEFAULT current_date
 );
 
 CREATE TABLE Post(
@@ -42,5 +42,5 @@ CREATE TABLE Post(
   thread_id INTEGER REFERENCES Thread(id),
   message TEXT,
   created TIMESTAMP,
-  edited TIMESTAMP
+  edited TIMESTAMP DEFAULT current_date
 );
