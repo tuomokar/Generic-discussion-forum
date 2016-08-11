@@ -27,6 +27,15 @@ $routes -> get('/topic-groups/:id/edit', function($id) {
     TopicGroupController::topicGroupEdit($id);
 });
 
+$routes -> post('/topic-groups/:id/edit', function($id) {
+   TopicGroupController::topicGroupUpdate($id);
+});
+
+$routes -> post('/topic-groups/:id/destroy', function($id) {
+    error_log("in routes.php trying to destroy with id: " . $id);
+    TopicGroupController::topicGroupDestroy($id);
+});
+
 // -------------- THREADS ------------------
 // temp address
 $routes -> get('/threads/1', function() {

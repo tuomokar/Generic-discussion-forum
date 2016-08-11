@@ -54,4 +54,18 @@ class TopicGroup extends BaseModel {
 
         $this -> id = $row['id'];
     }
+
+    public function update() {
+        $query = DB::connection() ->prepare('UPDATE topic_group SET name = :name, info = :info, edited = DEFAULT WHERE id = :id RETURNING id');
+        $query -> execute(array('name' => $this -> name, 'info' => $this -> info, 'id' => $this -> id));
+
+        $row = $query -> fetch();
+
+        $this -> id = $row['id'];
+    }
+
+    public function destroy() {
+        $query = DB::connection() -> prepare('DELETE FROM topic_group WHERE id = :id');
+        $query -> execute(array('id' => $this -> id));
+    }
 }

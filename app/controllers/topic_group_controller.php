@@ -29,4 +29,27 @@ class TopicGroupController extends BaseController{
         Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Created new topic group'));
     }
 
+    public static function topicGroupUpdate($id) {
+        $params = $_POST;
+
+        $attributes = array(
+            'id' => $id,
+            'name' => $params['name'],
+            'info' => $params['info']
+        );
+
+        $topicGroup = new TopicGroup($attributes);
+        $topicGroup -> update();
+
+        Redirect::to('/topic-groups/' . $topicGroup -> id, array('message => Edited topic group successfully'));
+    }
+
+    public static function topicGroupDestroy($id) {
+        $topicGroup = new TopicGroup(array('id' => $id));
+
+        $topicGroup -> destroy();
+
+        Redirect::to('/', array('message' => 'Removed topic group successfully'));
+    }
+
 }
