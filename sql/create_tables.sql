@@ -16,8 +16,8 @@ CREATE TABLE User_group(
 );
 
 CREATE TABLE Membership(
-  forum_user_id INTEGER REFERENCES Forum_user(id),
-  user_group_id INTEGER REFERENCES User_group(id),
+  forum_user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
+  user_group_id INTEGER REFERENCES User_group(id) ON DELETE CASCADE,
   created DATE DEFAULT current_date
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE Topic_group(
 
 CREATE TABLE Thread(
   id SERIAL PRIMARY KEY,
-  topic_group_id INTEGER REFERENCES Topic_group(id),
+  topic_group_id INTEGER REFERENCES Topic_group(id) ON DELETE CASCADE,
   title VARCHAR(50),
   created DATE,
   edited DATE DEFAULT current_date
@@ -39,7 +39,7 @@ CREATE TABLE Thread(
 
 CREATE TABLE Post(
   user_id INTEGER REFERENCES Forum_user(id),
-  thread_id INTEGER REFERENCES Thread(id),
+  thread_id INTEGER REFERENCES Thread(id)  ON DELETE CASCADE,
   message TEXT,
   created TIMESTAMP,
   edited TIMESTAMP DEFAULT current_date
