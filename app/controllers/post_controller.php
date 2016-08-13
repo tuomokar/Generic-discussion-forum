@@ -2,8 +2,9 @@
 
 class PostController extends BaseController{
 
-    public static function postShow() {
-        View::make('posts/post_show.html');
+    public static function postShow($id) {
+        $post = Post::find($id);
+        View::make('posts/post_show.html', array('post' => $post));
     }
 
     public static function postNew() {
