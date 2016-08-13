@@ -6,7 +6,6 @@
         <a href="{{base_path}}/threads/new" class="btn btn-primary new-button pull-right"><h4>Post new thread</h4></a>
         <h1>Threads in forum: {{topicGroup.name}}</h1>
     </div>
-
     <div>
         <table class="table table-bordered table-striped table-hover">
             <thead>
@@ -17,21 +16,13 @@
             </tr>
             </thead>
             <tbody>
+            {% for thread in threads %}
             <tr>
-                <td><a href="{{base_path}}/threads/1" class="btn">Generic people</a></td>
-                <td class="text-right">user1</td>
-                <td class="text-right">2</td>
+                <td><a href="{{base_path}}/threads/{{thread.id}}" class="btn">{{thread.title}}</a></td>
+                <td class="text-right">{{thread.creator}}</td>
+                <td class="text-right">{{thread.postCount}}</td>
             </tr>
-            <tr>
-                <td><a href="#" class="btn">Generic functions</a></td>
-                <td class="text-right">user2</td>
-                <td class="text-right">1</td>
-            </tr>
-            <tr>
-                <td><a href="#" class="btn">Generic trademarks</a></td>
-                <td class="text-right">user3</td>
-                <td class="text-right">1</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

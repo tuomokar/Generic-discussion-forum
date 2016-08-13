@@ -9,9 +9,9 @@ Links:
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
 * [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
-Note that for now most of the pages are mockups, with no real data. Currently only functions related directly to topic groups are active - you can edit and remove them and see them listed on the home page and checkout any topic group's page (though their threads are mockups).
+Note that for now most of the pages are mockups with no real data. Currently only topic groups have full functionality (not meaning as in finished though, for example validations are missing and things might of course change in other ways still) - you can edit and remove them and see them listed on the home page and checkout any topic group's page. On a given topic group's page you see the threads that belong to the group. However, if you click on a thread, you go to a mockup page.
 
-To see other pages you can click through the links at the mockup pages. If there are multiple instances of similar things (for example multiple threads on a topic group's page) the first one contains an actual link to the thread's mockup page.
+To see other pages you can click through the links at the mockup pages. If there are multiple instances of similar things (for example multiple users on the page listing the users) the first one contains an actual link to the thing's mockup page.
 
 # Project description
 

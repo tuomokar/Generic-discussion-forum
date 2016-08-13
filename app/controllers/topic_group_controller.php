@@ -4,7 +4,10 @@ class TopicGroupController extends BaseController{
 
     public static function topicGroupShow($id) {
         $topicGroup = TopicGroup::find($id);
-        View::make('topic-groups/topic_group_show.html', array('topicGroup' => $topicGroup));
+        $threads = TopicGroup::findThreads($id);
+
+        View::make('topic-groups/topic_group_show.html',
+            array('topicGroup' => $topicGroup, 'threads' => $threads));
     }
 
     public static function topicGroupEdit($id) {

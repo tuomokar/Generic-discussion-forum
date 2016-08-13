@@ -37,18 +37,17 @@ $routes -> post('/topic-groups/:id/destroy', function($id) {
 });
 
 // -------------- THREADS ------------------
-// temp address
-$routes -> get('/threads/1', function() {
-    ThreadController::threadShow();
-});
-
-// temp address
-$routes -> get('/threads/1/edit', function() {
-    ThreadController::threadEdit();
-});
 
 $routes -> get('/threads/new', function() {
     ThreadController::threadNew();
+});
+
+$routes -> get('/threads/:id', function($id) {
+    ThreadController::threadShow($id);
+});
+
+$routes -> get('/threads/:id/edit', function($id) {
+    ThreadController::threadEdit($id);
 });
 
 // -------------- Users ------------------
