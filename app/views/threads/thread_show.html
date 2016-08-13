@@ -22,7 +22,7 @@
         {% for post in posts %}
         <div class="post">
             <div class="post-info">
-                <h6><a href="{{base_path}}/users/{{post.creator_id}}">user1</a></h6>
+                <h6><a href="{{base_path}}/users/{{post.creator_id}}">{{post.creator}}</a></h6>
                 Member</br>
                 {{post.created}}
 

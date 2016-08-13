@@ -2,7 +2,7 @@
 
 class Thread extends BaseModel {
 
-    public $id, $title, $created, $edited, $creator, $postCount, $group;
+    public $id, $title, $created, $edited, $creator, $topic_group_id, $postCount, $group;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -29,7 +29,9 @@ class Thread extends BaseModel {
 
     /**
      * Fetches all the posts of a given thread. Besides the info that is on the 'post' table in the database, also
-     * the post's creator's username is added to each Post object the method the method returns.
+     * the post's creator's username is added to each Post object the method the method returns. Note that for
+     * the message of each post the line breaks are changed to br elements so that the line breaks can be rendered
+     * correctly.
      * @param $threadId The id of the thread the posts are wanted from
      * @return array Array containing Post objects
      */
