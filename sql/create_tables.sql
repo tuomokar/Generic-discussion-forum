@@ -16,6 +16,7 @@ CREATE TABLE User_group(
 );
 
 CREATE TABLE Membership(
+  id SERIAL PRIMARY KEY,
   forum_user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
   user_group_id INTEGER REFERENCES User_group(id) ON DELETE CASCADE,
   created DATE DEFAULT current_date
@@ -38,6 +39,7 @@ CREATE TABLE Thread(
 );
 
 CREATE TABLE Post(
+  id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES Forum_user(id),
   thread_id INTEGER REFERENCES Thread(id)  ON DELETE CASCADE,
   message TEXT,
