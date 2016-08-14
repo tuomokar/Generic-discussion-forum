@@ -70,7 +70,7 @@ class Thread extends BaseModel {
     }
 
     public function update() {
-        $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = DEFAULT WHERE id = :id RETURNING id');
+        $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = CURRENT_DATE WHERE id = :id RETURNING id');
         $query -> execute(array('title' => $this -> title, 'id' => $this -> id));
 
         $row = $query -> fetch();

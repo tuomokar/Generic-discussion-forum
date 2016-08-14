@@ -52,7 +52,7 @@ class Post extends BaseModel {
         }
 
         return new Post(array(
-           'id' => $id,
+            'id' => $id,
             'message' => $row['message']
         ));
     }

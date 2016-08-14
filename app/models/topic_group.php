@@ -110,7 +110,7 @@ class TopicGroup extends BaseModel {
     }
 
     public function update() {
-        $query = DB::connection() ->prepare('UPDATE topic_group SET name = :name, info = :info, edited = DEFAULT WHERE id = :id RETURNING id');
+        $query = DB::connection() ->prepare('UPDATE topic_group SET name = :name, info = :info, edited = CURRENT_DATE WHERE id = :id RETURNING id');
         $query -> execute(array('name' => $this -> name, 'info' => $this -> info, 'id' => $this -> id));
 
         $row = $query -> fetch();
