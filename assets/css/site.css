@@ -76,14 +76,9 @@ img {
 }
 
 .post-text {
-  width: 83%;
+  width: 80%;
   padding-top: 0.5em;
   margin-left: 1em;
-}
-
-.post-number {
-  width: 4%;
-  float: right;
 }
 
 .post-number a {
@@ -125,4 +120,13 @@ img {
 
 .margin-up {
   margin-top: 2em;
+}
+
+.thread-info-on-right {
+  width: 7%;
+  float: right;
+}
+.edit-info {
+  font-size: xx-small;
+  color: #31b0d5;
 }

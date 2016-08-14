@@ -24,8 +24,15 @@
         <div class="post-text">
             {{post.message | raw}}
         </div>
-        <div class="post-number">
-            <a href="{{base_path}}/posts/{{post.id}}">#{{post.id}}</a>
+        <div class="thread-info-on-right">
+            <div class="post-number">
+                <a href="{{base_path}}/posts/{{post.id}}">#{{post.numberInThread}}</a>
+            </div>
+            {% if post.edited %}
+            <div class="edit-info">
+                Edited: {{post.edited}}
+            </div>
+            {% endif %}
         </div>
 
     </div>
