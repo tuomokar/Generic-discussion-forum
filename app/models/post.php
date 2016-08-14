@@ -2,7 +2,7 @@
 
 class Post extends BaseModel {
 
-    public $id, $message, $created, $edited, $user_id, $thread_id, $creator, $thread;
+    public $id, $message, $created, $edited, $user_id, $thread_id, $creator, $thread, $numberInThread;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -37,6 +37,7 @@ class Post extends BaseModel {
             'thread_id' => $row['thread_id'],
             'creator' => $row['creator'],
             'thread' => $row['thread']
+            // if possible, include also the info on the number of the post within the thread here
         ));
     }
 

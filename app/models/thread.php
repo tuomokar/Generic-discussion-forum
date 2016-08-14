@@ -29,21 +29,22 @@ class Thread extends BaseModel {
 
     /**
      * Fetches all the posts of a given thread. Besides the info that is on the 'post' table in the database, also
-     * the post's creator's username is added to each Post object the method the method returns. Note that for
-     * the message of each post the line breaks are changed to br elements so that the line breaks can be rendered
+     * the post's creator's username is added to each Post object the method returns, along with also the number of
+     * the post within the thread. Note that for the message of each post the line breaks are changed to br elements so that the line breaks can be rendered
      * correctly.
      * @param $threadId The id of the thread the posts are wanted from
      * @return array Array containing Post objects
      */
     public static function findPostsOfThread($threadId) {
         $query = DB::connection() -> prepare('SELECT p.id, p.message, p.created, p.edited, p.user_id, u.username AS creator FROM post p, forum_user u 
-                                                WHERE thread_id = :threadId AND p.user_id = u.id');
+                                                WHERE thread_id = :threadId AND p.user_id = u.id ORDER BY p.id');
 
         $query -> execute(array('threadId' => $threadId));
         $rows = $query -> fetchAll();
 
         $posts = array();
-        foreach ($rows as $row) {
+        for ($i = 0; $i < sizeof($rows); $i++) {
+            $row = $rows[$i];
             $posts[] = new Post(array(
                 'id' => $row['id'],
                 'message' => nl2br($row['message']),
@@ -51,6 +52,7 @@ class Thread extends BaseModel {
                 'edited' => $row['edited'],
                 'user_id' => $row['user_id'],
                 'creator' => $row['creator'],
+                'numberInThread' => $i + 1
             ));
         }
 
