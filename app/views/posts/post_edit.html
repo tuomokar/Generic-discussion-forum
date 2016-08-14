@@ -6,14 +6,10 @@
         <h1>Edit reply</h1>
     </div>
     <div>
-        <form>
+        <form method="post" action="{{base_path}}/posts/{{post.id}}/edit">
             <div class="form-group">
                 <label for="post-text">Message:</label>
-                <textarea class="form-control" rows=7 id="post-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Proin condimentum ex nibh, sed vulputate nulla lacinia et.Donec placerat fermentum sollicitudin. Nunc vitae leo urna.Etiam sed nulla in risus pretium hendrerit. Pellentesquefeugiat dui in condimentum varius. Maecenas egestas elit ataliquam mattis. Nullam porttitor, neque sed egestas gravida,mi libero vehicula urna, id malesuada justo nisi id tellus.Sed ut interdum arcu. Proin laoreet molestie elementum.Vestibulum tristique, tortor eget luctus faucibus, erat risusvarius erat, id viverra mauris justo vehicula risus.
-
-Vivamus varius varius odio, non accumsan quam tincidunt cursus.Phasellus consectetur leo eu ligula sollicitudin, elementumaccumsan quam molestie. Phasellus maximus mattis massa, velconvallis erat porta eget. Nunc congue lacus augue, atscelerisque tortor elementum vel. Nam posuere est sed ante dictumdapibus. Sed ut velit et nisi convallis luctus. Cras sodales augueeget nulla viverra blandit. Quisque et massa placerat, lobortisnisl vel, ultrices urna. Vivamus egestas dolor a tellus vestibulum,quis fermentum ipsum gravida. Morbi rhoncus ultrices elit fringilla convallis.
-
-Morbi et augue ex. Donec eget nibh iaculis, varius lorem in, rutrummauris. Duis feugiat tortor tortor, a pretium tellus convallistempor. Maecenas a odio quis lorem volutpat imperdiet eget eget metus.Vivamus lobortis, metus quis dictum posuere, risus velit ultricies lorem,quis gravida sem neque tristique massa. Sed lacus metus, fermentumnec pulvinar et, fringilla et justo. Cras sit amet venenatis dui.Curabitur turpis ligula, porta in commodo nec, sollicitudin eget felis.Sed condimentum dui vel magna congue, a commodo nunc molestie. Nullam duiquam, suscipit at tristique nec, mollis sit amet tellus.</textarea>
+                <textarea name="message" class="form-control" rows=7 id="post-text">{{post.message}}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Reply</button>

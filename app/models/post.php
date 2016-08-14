@@ -41,9 +41,44 @@ class Post extends BaseModel {
         ));
     }
 
+    public static function fetchIdAndMessage($id) {
+        $query = DB::connection() -> prepare('SELECT id, message FROM post WHERE id = :id');
+        $query -> execute(array('id' => $id));
+
+        $row = $query -> fetch();
+
+        if (!$row) {
+            return null;
+        }
+
+        return new Post(array(
+           'id' => $id,
+            'message' => $row['message']
+        ));
+    }
+
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO post (user_id, thread_id, message, created)
                                                 VALUES (:user_id, :thread_id, :message, now())');
         $query -> execute(array('user_id' => $this -> user_id, 'thread_id' => $this -> thread_id, 'message' => $this -> message));
+    }
+
+    public function update() {
+        $query = DB::connection() -> prepare('UPDATE post SET message = :message, edited = now() WHERE id = :id RETURNING thread_id');
+        $query -> execute(array('id' => $this -> id, 'message' => $this -> message));
+
+        $this -> setThreadId($query);
+    }
+
+    public function destroy() {
+        $query = DB::connection() -> prepare('DELETE FROM post WHERE id = :id RETURNING thread_id');
+        $query -> execute(array('id' => $this -> id));
+
+        $this -> setThreadId($query);
+    }
+
+    private function setThreadId($query) {
+        $row = $query -> fetch();
+        $this -> thread_id = $row['thread_id'];
     }
 }

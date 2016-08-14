@@ -88,8 +88,20 @@ $routes -> get('/posts/:id/edit', function($id) {
     PostController::postEdit($id);
 });
 
-$routes -> get('/threads/:id/posts/new', function($threadId) {
+$routes -> post('/posts/:id/edit', function($id) {
+    PostController::postUpdate($id);
+});
+
+$routes -> get('/threads/:threadId/posts/new', function($threadId) {
     PostController::postNew($threadId);
+});
+
+$routes -> post('/threads/:threadId/posts/new', function($threadId) {
+    PostController::postSave($threadId);
+});
+
+$routes -> post('/posts/:id/destroy', function($id) {
+   PostController::postDestroy($id);
 });
 
 // -------------- Groups ------------------

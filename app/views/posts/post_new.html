@@ -7,10 +7,10 @@
         <h1>Post new reply</h1>
     </div>
     <div>
-        <form>
+        <form method="post" action="{{base_path}}/threads/{{thread_id}}/posts/new">
             <div class="form-group">
                 <label for="post-text">Message:</label>
-                <textarea class="form-control" rows=7 id="post-text"></textarea>
+                <textarea name="message" class="form-control" rows=7 id="post-text"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Reply</button>
