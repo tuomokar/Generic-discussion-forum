@@ -4,13 +4,13 @@
 <!-- Edit thread -->
 <div>
     <div>
-        <h1>Edit thread: Generic people</h1>
+        <h1>Edit thread: <a href="{{base_path}}/threads/{{thread.id}}">{{thread.title}}</a></h1>
     </div>
     <div>
-        <form>
+        <form method="post" action="{{base_path}}/threads/{{thread.id}}/edit">
             <div class="form-group">
                 <label>New name</label>
-                <input class="form-control" type="text">
+                <input name="title" class="form-control" type="text" value="{{thread.title}}">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

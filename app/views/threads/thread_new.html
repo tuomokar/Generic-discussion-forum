@@ -7,22 +7,23 @@
         <h1>Post new thread</h1>
     </div>
     <div>
-        <form>
+        <form method="post" action="{{base_path}}/threads/new">
             <div class="form-group">
                 <label for="new-thread">Topic group:</label>
-                <select class="form-control" id="new-thread">
-                    <option>Generic discussion</option>
-                    <option>More specific discussion</option>
+                <select name="topic_group_id" class="form-control" id="new-thread">
+                    {% for group in topicGroups %}
+                    <option value="{{group.id}}">{{group.name}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label>Title:</label>
-                <input class="form-control" type="text">
+                <input name="title" class="form-control" type="text">
             </div>
 
             <div class="form-group">
                 <label for="comment">Message:</label>
-                <textarea class="form-control" rows=7 id="comment"></textarea>
+                <textarea name="message" class="form-control" rows=7 id="comment"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit new thread</button>

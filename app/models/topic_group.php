@@ -122,4 +122,23 @@ class TopicGroup extends BaseModel {
         $query = DB::connection() -> prepare('DELETE FROM topic_group WHERE id = :id');
         $query -> execute(array('id' => $this -> id));
     }
+
+    public static function fetchIdAndName() {
+        $query = DB::connection() -> prepare('SELECT id, name FROM topic_group');
+        $query -> execute();
+
+        $rows = $query -> fetchAll();
+
+        $groups = array();
+        foreach ($rows as $row) {
+            $groups[] = new TopicGroup(array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+            ));
+        }
+
+        return $groups;
+
+
+    }
 }

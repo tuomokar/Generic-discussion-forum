@@ -55,6 +55,33 @@ class Thread extends BaseModel {
         }
 
         return $posts;
+    }
 
+    public function save() {
+        $query = DB::connection() -> prepare('INSERT INTO thread (title, topic_group_id, created) 
+                                                VALUES(:title, :topic_group_id, CURRENT_DATE) RETURNING id');
+        $query -> execute(array('title' => $this -> title,'topic_group_id' => $this -> topic_group_id));
+
+        $row = $query -> fetch();
+
+        $this -> id = $row['id'];
+    }
+
+    public function update() {
+        $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = DEFAULT WHERE id = :id RETURNING id');
+        $query -> execute(array('title' => $this -> title, 'id' => $this -> id));
+
+        $row = $query -> fetch();
+
+        $this -> id = $row['id'];
+    }
+
+    public function destroy() {
+        $query = DB::connection() -> prepare('DELETE FROM thread WHERE id = :id RETURNING topic_group_id');
+        $query -> execute(array('id' => $this -> id));
+
+        $row = $query -> fetch();
+
+        $this -> topic_group_id = $row['topic_group_id'];
     }
 }

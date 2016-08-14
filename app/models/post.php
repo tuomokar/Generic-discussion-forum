@@ -39,4 +39,10 @@ class Post extends BaseModel {
             'thread' => $row['thread']
         ));
     }
+
+    public function save() {
+        $query = DB::connection() -> prepare('INSERT INTO post (user_id, thread_id, message, created)
+                                                VALUES (:user_id, :thread_id, :message, now())');
+        $query -> execute(array('user_id' => $this -> user_id, 'thread_id' => $this -> thread_id, 'message' => $this -> message));
+    }
 }

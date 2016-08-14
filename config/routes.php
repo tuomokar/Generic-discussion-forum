@@ -32,14 +32,16 @@ $routes -> post('/topic-groups/:id/edit', function($id) {
 });
 
 $routes -> post('/topic-groups/:id/destroy', function($id) {
-    error_log("in routes.php trying to destroy with id: " . $id);
     TopicGroupController::topicGroupDestroy($id);
 });
 
 // -------------- THREADS ------------------
-
 $routes -> get('/threads/new', function() {
     ThreadController::threadNew();
+});
+
+$routes -> post('/threads/new', function() {
+    ThreadController::threadSave();
 });
 
 $routes -> get('/threads/:id', function($id) {
@@ -50,7 +52,16 @@ $routes -> get('/threads/:id/edit', function($id) {
     ThreadController::threadEdit($id);
 });
 
+$routes -> post('/threads/:id/edit', function($id) {
+   ThreadController::threadUpdate($id);
+});
+
+$routes -> post('/threads/:id/destroy', function($id) {
+    ThreadController::threadDestroy($id);
+});
+
 // -------------- Users ------------------
+// temp address
 $routes -> get('/users/1', function() {
     UserController::userShow();
 });
@@ -69,19 +80,16 @@ $routes -> get('/users/', function() {
 });
 
 // -------------- Posts ------------------
-// temp address
-$routes -> get('/posts/1', function() {
-    PostController::postShow();
+$routes -> get('/posts/:id', function($id) {
+    PostController::postShow($id);
 });
 
-// temp address
-$routes -> get('/posts/1/edit', function() {
-    PostController::postEdit();
+$routes -> get('/posts/:id/edit', function($id) {
+    PostController::postEdit($id);
 });
 
-// temp address
-$routes -> get('/threads/1/posts/new', function() {
-    PostController::postNew();
+$routes -> get('/threads/:id/posts/new', function($threadId) {
+    PostController::postNew($threadId);
 });
 
 // -------------- Groups ------------------
