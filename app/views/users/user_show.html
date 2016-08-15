@@ -3,22 +3,24 @@
 
 <div>
     <div>
-        <h1>User1</h1>
+        <h1>{{user.username}}</h1>
     </div>
     <div>
-        <p>Man, 40-year-old, accountant</p>
+        <p>{{user.info}}</p>
     </div>
     <div>
         <p>
-            Registered: 31.7.2016
+            Registered: {{user.created}}
         </p>
     </div>
 
     <div>
-        <p><a href="{{base_path}}/users/1/edit" class="btn btn-warning">Edit</a></p>
+        <p><a href="{{base_path}}/users/{{user.id}}/edit" class="btn btn-warning">Edit</a></p>
     </div>
     <div>
-        <p><a href="#" class="btn btn-danger">Remove</a></p>
+        <form method="post" action="{{base_path}}/users/{{user.id}}/destroy">
+            <button type="submit" class="btn btn-danger">Remove</button>
+        </form>
     </div>
 </div>
 

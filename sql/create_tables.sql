@@ -1,3 +1,4 @@
+-- noinspection SqlNoDataSourceInspectionForFile
 CREATE TABLE Forum_user(
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL UNIQUE,
@@ -40,8 +41,8 @@ CREATE TABLE Thread(
 
 CREATE TABLE Post(
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES Forum_user(id),
-  thread_id INTEGER REFERENCES Thread(id)  ON DELETE CASCADE,
+  user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
+  thread_id INTEGER REFERENCES Thread(id) ON DELETE CASCADE,
   message TEXT,
   created TIMESTAMP NOT NULL,
   edited TIMESTAMP

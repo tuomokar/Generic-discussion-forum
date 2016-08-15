@@ -13,27 +13,17 @@
         </tr>
         </thead>
         <tbody>
+        {% for user in users %}
         <tr>
-            <td><a href="{{base_path}}/users/1" class="btn">user1</a></td>
-            <td class="text-right">31.7.2016</td>
-            <td class="text-right">2</td>
-            <td><a href="{{base_path}}/users/1/edit" class="btn btn-warning pull-right">Edit</a></td>
-            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
+            <td><a href="{{base_path}}/users/{{user.id}}" class="btn">{{user.username}}</a></td>
+            <td class="text-right">{{user.created}}</td>
+            <td class="text-right">{{user.postCount}}</td>
+            <td><a href="{{base_path}}/users/{{user.id}}/edit" class="btn btn-warning pull-right">Edit</a></td>
+            <form method="post" action="{{base_path}}/users/{{user.id}}/destroy">
+                <td><button type="submit" class="btn btn-danger pull-right">Remove</button></td>
+            </form>
         </tr>
-        <tr>
-            <td><a href="#" class="btn">user2</a></td>
-            <td class="text-right">31.7.2016</td>
-            <td class="text-right">1</td>
-            <td><a href="#" class="btn btn-warning pull-right">Edit</a></td>
-            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
-        </tr>
-        <tr>
-            <td><a href="#" class="btn">user3</a></td>
-            <td class="text-right">31.7.2016</td>
-            <td class="text-right">1</td>
-            <td><a href="#" class="btn btn-warning pull-right">Edit</a></td>
-            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>

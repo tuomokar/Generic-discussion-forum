@@ -9,9 +9,9 @@ Links:
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
 * [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
-Note that for now only the pages directly related to topic groups, threads and posts are fully functional (as in not finished though - for example validations are missing and things are still up to change) - you can edit and remove them and see them listed and checkout any of their page.
+Note that for now only the pages directly related to topic groups, threads and posts are fully functional (as in not finished though - for example validations are missing and things are still up to change) - you can edit and remove them and see them listed and checkout any of their page. Also users are fully functional other than being able to log in (+ they miss things like proper password protection besides validations).
 
-To see other pages you can navigate through the links at the pages or parts of the pages that are or have still mockup data - for example the 'Users' link at the top takes you to a page listing users as mockup data (instead of fetching the data from the database) and you can click on the first user's username to see mockup data for the user page.
+The pages related to user groups are still mockup data. You can navigate through the links at the pages.
 
 # Project description
 

@@ -3,21 +3,21 @@
 
 <div>
     <div>
-        <h1>Edit user profile: user1</h1>
+        <h1>Edit user profile: {{user.username}}</h1>
     </div>
     <div>
-        <form>
+        <form method="post" action="{{base_path}}/users/{{user.id}}/edit">
             <div class="form-group">
                 <label for="user-info">Info:</label>
-                <textarea class="form-control" rows=2 id="user-info"></textarea>
+                <textarea name="info" class="form-control" rows=2 id="user-info">{{user.info}}</textarea>
             </div>
             <div class="form-group">
-                <label for="old_pw">Old password:</label>
-                <input type="password" class="form-control" id="old_pw">
+                <label for="old-pw">Old password:</label>
+                <input name="old-pw" type="password" class="form-control" id="old-pw">
             </div>
             <div class="form-group">
-                <label for="new_pw">New password:</label>
-                <input type="password" class="form-control" id="new_pw">
+                <label for="new-pw">New password:</label>
+                <input name="new-pw" type="password" class="form-control" id="new-pw">
             </div>
             <button type="submit" class="btn btn-primary">Edit user info</button>
         </form>

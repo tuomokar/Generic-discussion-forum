@@ -61,22 +61,32 @@ $routes -> post('/threads/:id/destroy', function($id) {
 });
 
 // -------------- Users ------------------
-// temp address
-$routes -> get('/users/1', function() {
-    UserController::userShow();
-});
-
-// temp address
-$routes -> get('/users/1/edit', function() {
-    UserController::userEdit();
+$routes -> get('/users/', function() {
+    UserController::userList();
 });
 
 $routes -> get('/users/new', function() {
     UserController::userNew();
 });
 
-$routes -> get('/users/', function() {
-    UserController::userList();
+$routes -> post('/users/new', function() {
+    UserController::userSave();
+});
+
+$routes -> get('/users/:id', function($id) {
+    UserController::userShow($id);
+});
+
+$routes -> get('/users/:id/edit', function($id) {
+    UserController::userEdit($id);
+});
+
+$routes -> post('/users/:id/edit', function($id) {
+    UserController::userUpdate($id);
+});
+
+$routes -> post('/users/:id/destroy', function($id) {
+    UserController::userDestroy($id);
 });
 
 // -------------- Posts ------------------
@@ -100,7 +110,7 @@ $routes -> post('/threads/:threadId/posts/new', function($threadId) {
     PostController::postSave($threadId);
 });
 
-$routes -> post('/posts/:id/destroy', function($id) {
+$routes -> post('posts/:id/destroy', function($id) {
    PostController::postDestroy($id);
 });
 
