@@ -9,7 +9,7 @@ class TopicGroup extends BaseModel {
     }
 
     public static function all() {
-        $query = DB::connection() -> prepare('SELECT * FROM topic_group');
+        $query = DB::connection() -> prepare('SELECT id, name, info FROM topic_group');
         $query -> execute();
 
         $rows = $query -> fetchAll();
@@ -19,9 +19,7 @@ class TopicGroup extends BaseModel {
             $groups[] = new TopicGroup(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'info' => $row['info'],
-                'created' => $row['created'],
-                'edited' => $row['edited']
+                'info' => $row['info']
             ));
         }
 
@@ -29,39 +27,31 @@ class TopicGroup extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection() -> prepare('SELECT * FROM topic_group WHERE id = :id LIMIT 1');
+        $query = DB::connection() -> prepare('SELECT id, name, info FROM topic_group WHERE id = :id LIMIT 1');
         $query -> execute(array('id' => $id));
         $row = $query -> fetch();
 
-        if ($row) {
-            $group = new TopicGroup(array(
-                'id' => $row['id'],
-                'name' => $row['name'],
-                'info' => $row['info'],
-                'created' => $row['created'],
-                'edited' => $row['edited']
-            ));
-
-            return $group;
+        if (!$row) {
+            return null;
         }
-        return null;
+
+        $group = new TopicGroup(array(
+            'id' => $row['id'],
+            'name' => $row['name'],
+            'info' => $row['info']
+        ));
+
+        return $group;
     }
 
-    /**
+    /*
      * Finds threads of a given topic group. The thread's id, title, creator and the post count are included in every
      * thread object. To get each thread's creator, it looks up the poster of the first post in each thread.
-     * @param $groupId The id of the topic group the threads are wanted from.
-     * @return array|null array containing the topic group's threads, or null if there are no threads in
-     * the topic group.
      */
     public static function findThreads($groupId) {
         $query = DB::connection() -> prepare('SELECT id, title FROM thread WHERE topic_group_id = :groupId');
         $query -> execute(array('groupId' => $groupId));
         $rows = $query -> fetchAll();
-
-        if (!$rows) {
-            return null;
-        }
 
         $threads = array();
         foreach ($rows as $row) {
@@ -82,8 +72,7 @@ class TopicGroup extends BaseModel {
     }
 
     private static function getThreadCreator($threadId) {
-        // Optimize this! Could probably be included in the query at the start of the findThreads method
-        // ..but not the easiest query to do like that
+        // Possible to optimize this? Not the easiest query to do though without having it in loop
         $query = DB::connection() -> prepare('SELECT u.username AS creator FROM post p, forum_user u 
                                                     WHERE p.user_id = u.id AND p.thread_id = :threadId LIMIT 1');
         $query -> execute(array('threadId' => $threadId));

@@ -2,21 +2,21 @@
 
 class PostController extends BaseController {
 
-    public static function postShow($id) {
+    public static function show($id) {
         $post = Post::find($id);
         View::make('posts/post_show.html', array('post' => $post));
     }
 
-    public static function postNew($threadId) {
+    public static function createNew($threadId) {
         View::make('posts/post_new.html', array('thread_id' => $threadId));
     }
 
-    public static function postEdit($id) {
+    public static function edit($id) {
         $post = Post::fetchIdAndMessage($id);
         View::make('posts/post_edit.html', array('post' => $post));
     }
 
-    public static function postSave($threadId) {
+    public static function save($threadId) {
         $params = $_POST;
 
         $post = new Post(array(
@@ -30,7 +30,7 @@ class PostController extends BaseController {
         Redirect::to('/threads/' . $threadId);
     }
 
-    public static function postUpdate($id) {
+    public static function update($id) {
         $params = $_POST;
 
         $post = new Post(array(
@@ -43,7 +43,7 @@ class PostController extends BaseController {
         Redirect::to('/threads/' . $post -> thread_id);
     }
 
-    public static function postDestroy($id) {
+    public static function destroy($id) {
         $post = new Post(array(
             'id' => $id
         ));

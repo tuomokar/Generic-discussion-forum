@@ -2,7 +2,7 @@
 
 class TopicGroupController extends BaseController{
 
-    public static function topicGroupShow($id) {
+    public static function show($id) {
         $topicGroup = TopicGroup::find($id);
         $threads = TopicGroup::findThreads($id);
 
@@ -10,17 +10,16 @@ class TopicGroupController extends BaseController{
             array('topicGroup' => $topicGroup, 'threads' => $threads));
     }
 
-    public static function topicGroupEdit($id) {
+    public static function edit($id) {
         $topicGroup = TopicGroup::find($id);
         View::make('topic-groups/topic_group_edit.html', array('topicGroup' => $topicGroup));
     }
 
-    public static function topicGroupNew() {
+    public static function createNew() {
         View::make('topic-groups/topic_group_new.html');
     }
 
-    // post new
-    public static function topicGroupSave() {
+    public static function save() {
         $params = $_POST;
 
         $topicGroup = new TopicGroup(array(
@@ -32,8 +31,7 @@ class TopicGroupController extends BaseController{
         Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Created new topic group'));
     }
 
-    // post update
-    public static function topicGroupUpdate($id) {
+    public static function update($id) {
         $params = $_POST;
 
         $attributes = array(
@@ -48,8 +46,7 @@ class TopicGroupController extends BaseController{
         Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Edited topic group successfully'));
     }
 
-    // post destroy
-    public static function topicGroupDestroy($id) {
+    public static function destroy($id) {
         $topicGroup = new TopicGroup(array('id' => $id));
 
         $topicGroup -> destroy();

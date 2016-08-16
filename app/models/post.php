@@ -8,13 +8,11 @@ class Post extends BaseModel {
         parent::__construct($attributes);
     }
 
-    /**
+    /*
      * Fetches all the info of a given post. Besides the info that is on the 'post' table in the database, also
      * the post's creator's username and the name of the thread that the post is in are added to the Post object
      * the method returns. Note that for the message of the post the line breaks are changed to br elements so that
      * the line breaks can be rendered correctly.
-     * @param $id The id of the post the info is wanted from
-     * @return null|Post
      */
     public static function find($id) {
         $query = DB::connection() -> prepare('SELECT p.id, p.message, p.created, p.edited, p.user_id, u.username AS creator, p.thread_id, t.title AS thread

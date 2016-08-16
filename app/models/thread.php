@@ -27,13 +27,11 @@ class Thread extends BaseModel {
         ));
     }
 
-    /**
+    /*
      * Fetches all the posts of a given thread. Besides the info that is on the 'post' table in the database, also
      * the post's creator's username is added to each Post object the method returns, along with also the number of
-     * the post within the thread. Note that for the message of each post the line breaks are changed to br elements so that the line breaks can be rendered
-     * correctly.
-     * @param $threadId The id of the thread the posts are wanted from
-     * @return array Array containing Post objects
+     * the post within the thread. Note that for the message of each post the line breaks are changed to br elements
+     * so that the line breaks can be rendered correctly.
      */
     public static function findPostsOfThread($threadId) {
         $query = DB::connection() -> prepare('SELECT p.id, p.message, p.created, p.edited, p.user_id, u.username AS creator FROM post p, forum_user u 
@@ -65,17 +63,12 @@ class Thread extends BaseModel {
         $query -> execute(array('title' => $this -> title,'topic_group_id' => $this -> topic_group_id));
 
         $row = $query -> fetch();
-
         $this -> id = $row['id'];
     }
 
     public function update() {
         $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = CURRENT_DATE WHERE id = :id RETURNING id');
         $query -> execute(array('title' => $this -> title, 'id' => $this -> id));
-
-        $row = $query -> fetch();
-
-        $this -> id = $row['id'];
     }
 
     public function destroy() {
@@ -83,7 +76,6 @@ class Thread extends BaseModel {
         $query -> execute(array('id' => $this -> id));
 
         $row = $query -> fetch();
-
         $this -> topic_group_id = $row['topic_group_id'];
     }
 }

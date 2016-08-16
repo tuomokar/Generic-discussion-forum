@@ -12,112 +12,112 @@ $routes -> get('/', function() {
 // -------------- TOPIC GROUPS ------------------
 
 $routes -> get('/topic-groups/new', function() {
-    TopicGroupController::topicGroupNew();
+    TopicGroupController::createNew();
 });
 
 $routes -> post('/topic-groups/new', function() {
-    TopicGroupController::topicGroupSave();
+    TopicGroupController::save();
 });
 
 $routes -> get('/topic-groups/:id', function($id) {
-    TopicGroupController::topicGroupShow($id);
+    TopicGroupController::show($id);
 });
 
 $routes -> get('/topic-groups/:id/edit', function($id) {
-    TopicGroupController::topicGroupEdit($id);
+    TopicGroupController::edit($id);
 });
 
 $routes -> post('/topic-groups/:id/edit', function($id) {
-   TopicGroupController::topicGroupUpdate($id);
+   TopicGroupController::update($id);
 });
 
 $routes -> post('/topic-groups/:id/destroy', function($id) {
-    TopicGroupController::topicGroupDestroy($id);
+    TopicGroupController::destroy($id);
 });
 
 // -------------- THREADS ------------------
 $routes -> get('/threads/new', function() {
-    ThreadController::threadNew();
+    ThreadController::createNew();
 });
 
 $routes -> post('/threads/new', function() {
-    ThreadController::threadSave();
+    ThreadController::save();
 });
 
 $routes -> get('/threads/:id', function($id) {
-    ThreadController::threadShow($id);
+    ThreadController::show($id);
 });
 
 $routes -> get('/threads/:id/edit', function($id) {
-    ThreadController::threadEdit($id);
+    ThreadController::edit($id);
 });
 
 $routes -> post('/threads/:id/edit', function($id) {
-   ThreadController::threadUpdate($id);
+   ThreadController::update($id);
 });
 
 $routes -> post('/threads/:id/destroy', function($id) {
-    ThreadController::threadDestroy($id);
+    ThreadController::destroy($id);
 });
 
 // -------------- Users ------------------
 $routes -> get('/users/', function() {
-    UserController::userList();
+    UserController::listAll();
 });
 
 $routes -> get('/users/new', function() {
-    UserController::userNew();
+    UserController::createNew();
 });
 
 $routes -> post('/users/new', function() {
-    UserController::userSave();
+    UserController::save();
 });
 
 $routes -> get('/users/:id', function($id) {
-    UserController::userShow($id);
+    UserController::show($id);
 });
 
 $routes -> get('/users/:id/edit', function($id) {
-    UserController::userEdit($id);
+    UserController::edit($id);
 });
 
 $routes -> post('/users/:id/edit', function($id) {
-    UserController::userUpdate($id);
+    UserController::update($id);
 });
 
 $routes -> post('/users/:id/destroy', function($id) {
-    UserController::userDestroy($id);
+    UserController::destroy($id);
 });
 
 // -------------- Posts ------------------
 $routes -> get('/posts/:id', function($id) {
-    PostController::postShow($id);
+    PostController::show($id);
 });
 
 $routes -> get('/posts/:id/edit', function($id) {
-    PostController::postEdit($id);
+    PostController::edit($id);
 });
 
 $routes -> post('/posts/:id/edit', function($id) {
-    PostController::postUpdate($id);
+    PostController::update($id);
 });
 
 $routes -> get('/threads/:threadId/posts/new', function($threadId) {
-    PostController::postNew($threadId);
+    PostController::createNew($threadId);
 });
 
 $routes -> post('/threads/:threadId/posts/new', function($threadId) {
-    PostController::postSave($threadId);
+    PostController::save($threadId);
 });
 
 $routes -> post('posts/:id/destroy', function($id) {
-   PostController::postDestroy($id);
+   PostController::destroy($id);
 });
 
 // -------------- User groups ------------------
 
 $routes -> get('/user-groups/new', function() {
-    UserGroupController::userGroupNew();
+    UserGroupController::createNew();
 });
 
 $routes -> post('/user-groups/new', function() {
@@ -125,30 +125,30 @@ $routes -> post('/user-groups/new', function() {
 });
 
 $routes -> get('/user-groups/:id', function($id) {
-    UserGroupController::userGroupShow($id);
+    UserGroupController::show($id);
 });
 
 $routes -> get('/user-groups/:id/edit', function($id) {
-    UserGroupController::userGroupEdit($id);
+    UserGroupController::edit($id);
 });
 
 $routes -> post('/user-groups/:id/edit', function($id) {
-    UserGroupController::userGroupUpdate($id);
+    UserGroupController::update($id);
 });
 
 $routes -> get('/user-groups', function() {
-    UserGroupController::userGroupList();
+    UserGroupController::listAll();
 });
 
 $routes -> post('/user-groups/:id/destroy', function($id) {
-    UserGroupController::userGroupDestroy($id);
+    UserGroupController::destroy($id);
 });
 
 // -------------- Memberships ------------------
 $routes -> post('/memberships/new', function() {
-    MembershipController::membershipSave();
+    MembershipController::save();
 });
 
 $routes -> post('/memberships/:id/destroy', function($id) {
-    MembershipController::membershipDestroy($id);
+    MembershipController::destroy($id);
 });

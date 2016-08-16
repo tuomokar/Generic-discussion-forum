@@ -39,7 +39,7 @@ class UserGroup extends BaseModel {
         );
     }
 
-    // method to updated the edited field of user group externally
+    // method to update the edited field of user group externally
     public static function updateStatus($id) {
         $query = DB::connection() -> prepare('UPDATE user_group SET edited = CURRENT_DATE');
         $query -> execute();

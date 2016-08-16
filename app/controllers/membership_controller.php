@@ -2,7 +2,7 @@
 
 class MembershipController {
 
-    public static function membershipSave() {
+    public static function save() {
         $params = $_POST;
 
         $membership = new Membership(array(
@@ -16,7 +16,7 @@ class MembershipController {
             array('Added user to the group successfully'));
     }
 
-    public static function membershipDestroy($id) {
+    public static function destroy($id) {
         $membership = new Membership(array('id' => $id));
 
         $membership -> destroy();

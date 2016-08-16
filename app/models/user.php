@@ -68,12 +68,8 @@ class User extends BaseModel {
 
     // very temporary (needs a lot more protection)
     public function update() {
-        $query = DB::connection() -> prepare('UPDATE forum_user SET password = :password, info = :info, edited = CURRENT_DATE WHERE id = :id RETURNING id');
+        $query = DB::connection() -> prepare('UPDATE forum_user SET password = :password, info = :info, edited = CURRENT_DATE WHERE id = :id');
         $query -> execute(array('id' => $this -> id, 'password' => $this -> password, 'info' => $this -> info));
-
-        $row = $query -> fetch();
-
-        $this -> id = $row['id'];
     }
 
     public function destroy() {

@@ -2,27 +2,27 @@
 
 class UserController extends BaseController {
 
-    public static function userShow($id) {
+    public static function show($id) {
         $user = User::find($id);
         View::make('users/user_show.html', array('user' => $user));
     }
 
-    public static function userNew() {
+    public static function createNew() {
         View::make('users/user_new.html');
     }
 
-    public static function userEdit($id) {
+    public static function edit($id) {
         $user = User::find($id);
         View::make('users/user_edit.html', array('user' => $user));
     }
 
-    public static function userList() {
+    public static function listAll() {
         $users = User::all();
         View::make('users/user_list.html', array('users' => $users));
     }
 
     // needs a lot more protection!
-    public static function userSave() {
+    public static function save() {
         $params = $_POST;
 
         $user = new User(array(
@@ -32,12 +32,11 @@ class UserController extends BaseController {
         ));
 
         $user -> save();
-
         Redirect::to('/users/' . $user -> id, array('message' => "Welcome to Gendifo"));
     }
 
     // more protection required here too!
-    public static function userUpdate($id) {
+    public static function update($id) {
         $params = $_POST;
 
         $user = new User(array(
@@ -47,17 +46,13 @@ class UserController extends BaseController {
         ));
 
         $user -> update();
-
         Redirect::to('/users/' . $user -> id, array('message' => "Updated user info successfully"));
     }
 
-    public static function userDestroy($id) {
-        $user = new User(array(
-            'id' => $id
-        ));
+    public static function destroy($id) {
+        $user = new User(array('id' => $id));
 
         $user -> destroy();
-
         Redirect::to('/users', array('message' => "Removed user successfully"));
     }
 

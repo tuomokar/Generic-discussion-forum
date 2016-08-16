@@ -2,12 +2,12 @@
 
 class ThreadController extends BaseController {
 
-    public static function threadNew() {
+    public static function createNew() {
         $topicGroups = TopicGroup::fetchIdAndName();
         View::make('threads/thread_new.html', array('topicGroups' => $topicGroups));
     }
 
-    public static function threadShow($id) {
+    public static function show($id) {
         $thread = Thread::find($id);
         $posts = Thread::findPostsOfThread($id);
 
@@ -15,13 +15,12 @@ class ThreadController extends BaseController {
             array('thread' => $thread, 'posts' => $posts));
     }
 
-    public static function threadEdit($id) {
+    public static function edit($id) {
         $thread = Thread::find($id);
         View::make('threads/thread_edit.html', array('thread' => $thread));
     }
 
-    // post new
-    public static function threadSave() {
+    public static function save() {
         $params = $_POST;
 
         $thread = new Thread(array(
@@ -39,9 +38,8 @@ class ThreadController extends BaseController {
 
         Redirect::to('/threads/' . $thread -> id, array('message' => 'Created thread successfully'));
     }
-
-    // post update
-    public static function threadUpdate($id) {
+    
+    public static function update($id) {
         $params = $_POST;
 
         $attributes = array(
@@ -56,7 +54,7 @@ class ThreadController extends BaseController {
     }
 
     // post destroy
-    public static function threadDestroy($id) {
+    public static function destroy($id) {
         $thread = new Thread(array('id' => $id));
         $thread -> destroy();
 
