@@ -3,17 +3,17 @@
 
 <div>
     <h1>Edit user group: Truly generic</h1>
-    <form>
+    <form method="post" action="{{base_path}}/user-groups/{{group.group.id}}/edit">
         <div class="form-group">
-            <label>Title:</label>
-            <input class="form-control" type="text">
+            <label>Name:</label>
+            <input name="name" class="form-control" type="text" value="{{group.group.name}}">
         </div>
         <div class="form-group">
             <label for="info">Info:</label>
-            <textarea class="form-control" rows=2 id="info">Users who have achieved the state of true genericity.</textarea>
+            <textarea name="info" class="form-control" rows=2 id="info">{{group.group.info}}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Edit</button>
+        <button type="submit" class="btn btn-primary">Edit group info</button>
     </form>
 </div>
 

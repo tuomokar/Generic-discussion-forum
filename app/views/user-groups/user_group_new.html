@@ -3,14 +3,14 @@
 
 <div>
     <h1>Create new user group</h1>
-    <form>
+    <form post="method" action="{{base_path}}/user-groups/new">
         <div class="form-group">
-            <label>Title:</label>
-            <input class="form-control" type="text">
+            <label>Name:</label>
+            <input name="name" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="info">Info:</label>
-            <textarea class="form-control" rows=2 id="info"></textarea>
+            <textarea name="info" class="form-control" rows=2 id="info"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>

@@ -114,22 +114,41 @@ $routes -> post('posts/:id/destroy', function($id) {
    PostController::postDestroy($id);
 });
 
-// -------------- Groups ------------------
-// temp address
-$routes -> get('/user-groups/1', function() {
-    UserGroupController::userGroupShow();
-});
+// -------------- User groups ------------------
 
-// temp address
-$routes -> get('/user-groups/1/edit', function() {
-    UserGroupController::userGroupEdit();
-});
-
-// temp address
 $routes -> get('/user-groups/new', function() {
     UserGroupController::userGroupNew();
 });
 
+$routes -> post('/user-groups/new', function() {
+    UserGroupController::userGroupSave();
+});
+
+$routes -> get('/user-groups/:id', function($id) {
+    UserGroupController::userGroupShow($id);
+});
+
+$routes -> get('/user-groups/:id/edit', function($id) {
+    UserGroupController::userGroupEdit($id);
+});
+
+$routes -> post('/user-groups/:id/edit', function($id) {
+    UserGroupController::userGroupUpdate($id);
+});
+
 $routes -> get('/user-groups', function() {
     UserGroupController::userGroupList();
+});
+
+$routes -> post('/user-groups/:id/destroy', function($id) {
+    UserGroupController::userGroupDestroy($id);
+});
+
+// -------------- Memberships ------------------
+$routes -> post('/memberships/new', function() {
+    MembershipController::membershipSave();
+});
+
+$routes -> post('/memberships/:id/destroy', function($id) {
+    MembershipController::membershipDestroy($id);
 });

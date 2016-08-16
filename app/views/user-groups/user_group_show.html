@@ -3,21 +3,23 @@
 
 <div>
     <div>
-        <h1>User group Truly generic</h1>
+        <h1>User group {{group.group.name}}</h1>
         <p>
-            Users who have achieved the state of true genericity.
+            {{group.group.info}}
         </p>
         <div class="pull-right">
             <a href="{{base_path}}/user-groups/1/edit" class="btn btn-warning pull-right">Edit</a>
         </div>
         <p class="margin-up">
-            Created: 31.7.2016
+            Created: {{group.group.created}}
         </p>
+        {% if group.group.edited %}
         <p>
-            Last updated: 31.7.2016
+            Last updated: {{group.group.edited}}
         </p>
+        {% endif %}
         <p>
-            2 members
+            {{group.group.memberCount}} members
         </p>
     </div>
     <div>
@@ -30,33 +32,37 @@
             </tr>
             </thead>
             <tbody>
+            {% for membership in group.memberships %}
             <tr>
-                <td><a href="{{base_path}}/users/1" class="btn">user1</a></td>
-                <td class="text-right">31.7.2016</td>
-                <td class="text-right">31.7.2016</td>
-                <td><a href="#" class="btn btn-warning pull-right">Remove</a></td>
+                <td><a href="{{base_path}}/users/{{membership.userId}}" class="btn">{{membership.user}}</a></td>
+                <td class="text-right">{{membership.registered}}</td>
+                <td class="text-right">{{membership.userAdded}}</td>
+                <form method="post" action="{{base_path}}/memberships/{{membership.id}}/destroy">
+                    <td><button type="submit" class="btn btn-danger pull-right">Remove</button></td>
+                </form>
             </tr>
-            <tr>
-                <td><a href="#" class="btn">user2</a></td>
-                <td class="text-right">31.7.2016</td>
-                <td class="text-right">31.7.2016</td>
-                <td><a href="#" class="btn btn-warning pull-right">Remove</a></td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
+
+    {% if usersNotInGroup %}
     <div>
-        <form>
-            <h3 class="margin-up">Add user</h3>
+        <h3 class="margin-up">Add user</h3>
+        <form method="post" action="{{base_path}}/memberships/new">
+            <input type="hidden" name="groupId" value="{{group.group.id}}">
             <div class="form-group">
                 <label for="username">Username</label>
-                <select class="form-control" id="username">
-                    <option>user3</option>
+                <select name="userId" class="form-control" id="username">
+                    {% for user in usersNotInGroup %}
+                    <option value="{{user.id}}">{{user.username}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Add user</button>
         </form>
     </div>
+    {% endif %}
 </div>
 
 

@@ -17,21 +17,17 @@
         </tr>
         </thead>
         <tbody>
+        {% for group in groups %}
         <tr>
-            <td><a href="{{base_path}}/user-groups/1" class="btn">Truly generic</a></td>
-            <td>2</td>
-            <td>31.7.2016</td>
-            <td><a href="{{base_path}}/user-groups/1/edit" class="btn btn-warning pull-right">Edit</a></td>
-            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
+            <td><a href="{{base_path}}/user-groups/{{group.id}}" class="btn">{{group.name}}</a></td>
+            <td>{{group.memberCount}}</td>
+            <td>{{group.edited}}</td>
+            <td><a href="{{base_path}}/user-groups/{{group.id}}/edit" class="btn btn-warning pull-right">Edit</a></td>
+            <form method="post" action="{{base_path}}/user-groups/{{group.id}}/destroy">
+                <td><button type="submit" class="btn btn-danger">Remove</button></td>
+            </form>
         </tr>
-        <tr>
-            <td><a href="#" class="btn">Naughty users</a></td>
-            <td>0</td>
-            <td>31.7.2016</td>
-            <td><a href="#" class="btn btn-warning pull-right">Edit</a></td>
-            <td><a href="#" class="btn btn-danger pull-right">Remove</a></td>
-            <td></td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>
