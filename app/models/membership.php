@@ -25,8 +25,8 @@ class Membership extends BaseModel {
         return $memberships;
     }
 
-    public static function memberCount($groupId) {
-        $query = DB::connection() -> prepare('SELECT count(*) FROM membership WHERE id = :id');
+    public static function memberCountOfGroup($groupId) {
+        $query = DB::connection() -> prepare('SELECT count(*) FROM membership WHERE user_group_id = :id');
         $query -> execute(array('id' => $groupId));
 
         $rows = $query -> fetch();

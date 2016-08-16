@@ -21,7 +21,7 @@ class UserGroup extends BaseModel {
                 'id' => $id,
                 'name' => $row['name'],
                 'edited' => $row['edited'],
-                'memberCount' => Membership::memberCount($id)
+                'memberCount' => Membership::memberCountOfGroup($id)
             ));
         }
 
@@ -40,7 +40,7 @@ class UserGroup extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection() -> prepare('INSERT INTO user_group (name, info) VALUES (:name, :info) RETURNING id');
+        $query = DB::connection() -> prepare('INSERT INTO user_group (name, info, created) VALUES (:name, :info, CURRENT_DATE ) RETURNING id');
         $query -> execute(array('name' => $this -> name, 'info' => $this -> info));
 
         $row = $query -> fetch();
