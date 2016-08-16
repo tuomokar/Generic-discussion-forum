@@ -53,6 +53,8 @@ class Membership extends BaseModel {
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO membership (user_id, user_group_id, created) VALUES (:user_id, :group_id, CURRENT_DATE)');
         $query -> execute(array('user_id' => $this -> userId, 'group_id' => $this -> groupId));
+
+        UserGroup::updateStatus($this -> groupId);
     }
 
     public function destroy() {
@@ -61,6 +63,8 @@ class Membership extends BaseModel {
 
         $row = $query -> fetch();
         $this -> groupId = $row['user_group_id'];
+
+        UserGroup::updateStatus($this -> groupId);
     }
 
     private static function queryMembershipInfo($groupId) {
