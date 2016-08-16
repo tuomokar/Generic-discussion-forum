@@ -5,8 +5,8 @@ INSERT INTO Forum_user (username, password, info, created, edited) VALUES ('user
 INSERT INTO User_group (name, info, created, edited) VALUES ('Truly generic', 'Users who have achieved the state of true genericity.', '2016-07-31', '2016-07-31');
 INSERT INTO User_group (name, info, created, edited) VALUES ('Naughty users', 'Bad, bad users.', '2016-07-31', '2016-07-31');
 
-INSERT INTO Membership (forum_user_id, user_group_id) VALUES ('1', '1');
-INSERT INTO Membership (forum_user_id, user_group_id) VALUES ('2', '1');
+INSERT INTO Membership (user_id, user_group_id, created) VALUES ('1', '1', '2016-07-31');
+INSERT INTO Membership (user_id, user_group_id, created) VALUES ('2', '1', '2016-07-31');
 
 INSERT INTO Topic_group (name, info, created, edited) VALUES ('Generic discussion', 'This is where the real magic of this forum lies!', '2016-07-31', '2016-07-31');
 INSERT INTO Topic_group (name, info, created, edited) VALUES ('More specific discussion', 'For those rare times you might wanna talk about something a bit more specific! ', '2016-07-31', '2016-07-31');
