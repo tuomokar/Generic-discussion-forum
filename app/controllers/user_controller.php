@@ -21,29 +21,42 @@ class UserController extends BaseController {
         View::make('users/user_list.html', array('users' => $users));
     }
 
-    // needs a lot more protection!
     public static function save() {
         $params = $_POST;
 
-        $user = new User(array(
+        $attributes = array(
             'username' => $params['username'],
             'password' => $params['password'],
+            'passwordConfirmation' => $params['password-confirmation'],
             'info' => $params['info']
-        ));
+        );
+        $user = new User($attributes);
+
+        $errors = $user -> validateWhenSaving();
+        if ($errors) {
+            View::make("/users/user_new.html", array('errors' => $errors, 'attributes' => $attributes));
+        }
 
         $user -> save();
         Redirect::to('/users/' . $user -> id, array('message' => "Welcome to Gendifo"));
     }
 
-    // more protection required here too!
     public static function update($id) {
         $params = $_POST;
 
-        $user = new User(array(
+        $attributes = array(
             'id' => $id,
-            'password' => $params['new-pw'],
+            'password' => $params['old-pw'],
+            'newPassword' => $params['new-pw'],
             'info' => $params['info']
-        ));
+        );
+        $user = new User($attributes);
+
+        $errors = $user -> validateWhenUpdating();
+        if ($errors) {
+            $user = User::find($user -> id);
+            View::make("/users/user_edit.html", array('errors' => $errors, 'user' => $user));
+        }
 
         $user -> update();
         Redirect::to('/users/' . $user -> id, array('message' => "Updated user info successfully"));

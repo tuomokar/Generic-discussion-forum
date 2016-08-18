@@ -2,10 +2,12 @@
 
 class User extends BaseModel {
 
-    public $id, $username, $password, $info, $created, $edited, $postCount;
+    public $id, $username, $password, $passwordConfirmation, $newPassword, $info, $created, $edited, $postCount;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+//        $this -> validators = array('validatePassword', 'validateUsername, validatePasswordWhenUpdating');
+        $this -> validators = array();
     }
 
     public static function all() {
@@ -57,16 +59,16 @@ class User extends BaseModel {
         ));
     }
 
+    // password not salted yet etc etc
     public function save() {
-        $query = DB::connection() -> prepare('INSERT INTO forum_user (username, info, created) VALUES (:username, :info, CURRENT_DATE) RETURNING id');
-        $query -> execute(array('username' => $this -> username, 'info' => $this -> info));
+        $query = DB::connection() -> prepare('INSERT INTO forum_user (username, info, password, created) VALUES (:username, :info, :password, CURRENT_DATE) RETURNING id');
+        $query -> execute(array('username' => $this -> username, 'info' => $this -> info, 'password' => $this -> password));
 
         $row = $query -> fetch();
 
         $this -> id = $row['id'];
     }
 
-    // very temporary (needs a lot more protection)
     public function update() {
         $query = DB::connection() -> prepare('UPDATE forum_user SET password = :password, info = :info, edited = CURRENT_DATE WHERE id = :id');
         $query -> execute(array('id' => $this -> id, 'password' => $this -> password, 'info' => $this -> info));
@@ -112,4 +114,61 @@ class User extends BaseModel {
         $creatorRow = $query -> fetch();
         return $creatorRow['user_id'];
     }
+
+    public function validateUsername() {
+        return $this -> validateStringLength($this -> username, 3, 'Username');
+    }
+
+    private function validatePassword() {
+        $errors = array();
+        if ($this -> stringsDontEqual($this -> password, $this -> passwordConfirmation)) {
+            $errors[] = "Password confirmation must match the password!";
+        }
+
+        $this -> validatePassHasCertainThings($errors);
+
+        $errors = array_merge($errors, $this -> validateStringLength($this -> password, 8, 'Password'));
+        return $errors;
+    }
+
+    public function validateWhenSaving() {
+        $errors = array();
+        $errors = array_merge($errors, $this -> validatePassword($this -> passwordConfirmation));
+        $errors = array_merge($errors, $this -> validateUsername());
+
+        return $errors;
+    }
+
+    public function validateWhenUpdating() {
+        $errors = array();
+
+        $correctPw = $this -> fetchPassword();
+        if ($this -> stringsDontEqual($this -> password, $correctPw)) {
+            $errors[] = "Password was wrong, you aren't trying to hack anyone are you?";
+        }
+
+        $this -> validatePassHasCertainThings($errors);
+        $errors = array_merge($errors, $this -> validateStringLength($this -> newPassword, 8, 'Password'));
+        return $errors;
+
+    }
+
+    private function fetchPassword() {
+        $query = DB::connection() -> prepare('SELECT password FROM forum_user WHERE id = :id');
+        $query -> execute(array('id' => $this -> id));
+
+        $row = $query -> fetch();
+        return $row['password'];
+    }
+
+    private function validatePassHasCertainThings($errors) {
+        if (!preg_match('/^(?=.*?\pL)(?=.*?\pN)(?=.*[^\pL\pN])/', $this -> password)) {
+            $errors[] = "Password must have at least one special character, one letter and one number";
+        }
+    }
+
+    private function stringsDontEqual($string1, $string2) {
+        return (strcmp($string1, $string2) !== 0);
+    }
+
 }
