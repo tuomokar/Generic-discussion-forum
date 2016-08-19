@@ -5,10 +5,16 @@ class MembershipController {
     public static function save() {
         $params = $_POST;
 
-        $membership = new Membership(array(
+        $attributes = array(
             'userId' => $params['userId'],
             'groupId' => $params['groupId']
-        ));
+        );
+        $membership = new Membership($attributes);
+        $errors = $membership -> errors();
+
+        if ($errors) {
+            View::make('user-groups/user_group_show.html', array('membershipErrors' => $errors));
+        }
 
         $membership -> save();
 

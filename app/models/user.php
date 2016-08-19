@@ -128,7 +128,7 @@ class User extends BaseModel {
         $this -> validatePassHasCertainThings($errors);
         $this -> validateStringMaxLength($this -> password, 100, 'Password', $errors);
 
-        $errors = array_merge($errors, $this -> validateStringLength($this -> password, 8, 'Password'));
+        $errors = array_merge($errors, $this -> validateStringLength($this -> password, 8, 100, 'Password'));
         return $errors;
     }
 
@@ -143,14 +143,20 @@ class User extends BaseModel {
     public function validateWhenUpdating() {
         $errors = array();
 
+        $errors = $this -> validateFieldsExist(array('Password' => $this -> password));
+
+        if ($errors) {
+            return $errors;
+        }
+
         $correctPw = $this -> fetchPassword();
+
         if ($this -> stringsDontEqual($this -> password, $correctPw)) {
             $errors[] = "Password was wrong, you aren't trying to hack anyone are you?";
         }
 
         $this -> validatePassHasCertainThings($errors);
-        $this -> validateStringMaxLength($this -> password, 100, 'Password', $errors);
-        $errors = array_merge($errors, $this -> validateStringLength($this -> newPassword, 8, 'Password'));
+        $errors = array_merge($errors, $this -> validateStringLength($this -> newPassword, 8, 100, 'Password'));
         return $errors;
 
     }

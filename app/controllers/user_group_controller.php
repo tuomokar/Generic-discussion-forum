@@ -26,10 +26,16 @@ class UserGroupController extends BaseController{
     public static function userGroupSave() {
         $params = $_POST;
 
-        $group = new UserGroup(array(
+        $attributes = array(
             'name' => $params['name'],
             'info' => $params['info']
-        ));
+        );
+        $group = new UserGroup($attributes);
+
+        $errors = $group -> errors();
+        if ($errors) {
+            View::make('user-groups/user_group_new.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
 
         $group -> save();
 
@@ -39,11 +45,18 @@ class UserGroupController extends BaseController{
     public static function update($id) {
         $params = $_POST;
 
-        $group = new UserGroup(array(
+
+        $attributes = array(
             'id' => $id,
             'name' => $params['name'],
             'info' => $params['info']
-        ));
+        );
+        $group = new UserGroup($attributes);
+
+        $errors = $group -> errors();
+        if ($errors) {
+            View::make('user-groups/user_group_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
 
         $group -> update();
 

@@ -25,22 +25,30 @@ class BaseModel{
 
     public function validateStringLength($string, $minLength, $maxLength, $field) {
         $errors = array();
-        if ($string == '' || $string == null) {
-            $errors[] = $field . " can't be empty!";
-        }
+        $this -> validateFieldsExist(array($field => $string), $errors);
 
         if (strlen($string) < $minLength) {
             $errors[] = $field . ' must have at least ' . $minLength . ' characters';
         }
-        $this -> validateStringMaxLength($string, $maxLength, $errors);
+        $this -> validateStringMaxLength($string, $maxLength, $field, $errors);
 
         return $errors;
     }
 
     public function validateStringMaxLength($string, $maxLength, $field, $errors) {
         if (strlen($string) > $maxLength) {
-            $errors[] = $field . 'must have less than ' . $maxLength . ' characters';
+            $errors[] = $field . 'must have max ' . $maxLength . ' characters';
         }
+    }
+
+    public function validateFieldsExist($fields) {
+        $errors = array();
+        foreach ($fields as $field => $value) {
+            if ($value == '' || $value == null) {
+                $errors[] = $field . " can't be empty";
+            }
+        }
+        return $errors;
     }
 
 }

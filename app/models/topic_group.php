@@ -6,6 +6,7 @@ class TopicGroup extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this -> validators = array('validateName', 'validateInfo');
     }
 
     public static function all() {
@@ -127,7 +128,13 @@ class TopicGroup extends BaseModel {
         }
 
         return $groups;
+    }
 
+    public function validateName() {
+        return $this -> validateStringLength($this -> name, 2, 50, 'Name');
+    }
 
+    public function validateInfo() {
+        return $this -> validateStringLength($this -> info, 2, 400, 'Info');
     }
 }

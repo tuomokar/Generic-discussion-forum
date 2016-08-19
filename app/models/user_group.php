@@ -6,6 +6,7 @@ class UserGroup extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this -> validators = array('validateName', 'validateInfo');
     }
 
     public static function all() {
@@ -76,6 +77,14 @@ class UserGroup extends BaseModel {
             'edited' => $row['edited'],
             'memberCount' => sizeof($memberships)
         ));
+    }
+
+    public function validateName() {
+        return $this -> validateStringLength($this -> name, 2, 50, 'Name');
+    }
+
+    public function validateInfo() {
+        return $this -> validateStringLength($this -> info, 2, 400, 'Info');
     }
 
 }

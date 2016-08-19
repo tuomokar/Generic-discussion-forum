@@ -18,8 +18,8 @@ CREATE TABLE User_group(
 
 CREATE TABLE Membership(
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
-  user_group_id INTEGER REFERENCES User_group(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE NOT NULL,
+  user_group_id INTEGER REFERENCES User_group(id) ON DELETE CASCADE NOT NULL,
   created DATE NOT NULL
 );
 

@@ -22,10 +22,17 @@ class TopicGroupController extends BaseController{
     public static function save() {
         $params = $_POST;
 
-        $topicGroup = new TopicGroup(array(
+        $attributes = array(
             'name' => $params['name'],
             'info' => $params['info']
-        ));
+        );
+        $topicGroup = new TopicGroup($attributes);
+
+        $errors = $topicGroup -> errors();
+        if ($errors) {
+            View::make('topic-groups/topic_group_new.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
+
         $topicGroup -> save();
 
         Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Created new topic group'));
@@ -41,6 +48,12 @@ class TopicGroupController extends BaseController{
         );
 
         $topicGroup = new TopicGroup($attributes);
+
+        $errors = $topicGroup -> errors();
+        if ($errors) {
+            View::make('topic-groups/topic_group_new.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
+
         $topicGroup -> update();
 
         Redirect::to('/topic-groups/' . $topicGroup -> id, array('message' => 'Edited topic group successfully'));
