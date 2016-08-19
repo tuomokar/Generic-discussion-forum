@@ -23,17 +23,24 @@ class BaseModel{
         return $errors;
     }
 
-    public function validateStringLength($string, $length, $field) {
+    public function validateStringLength($string, $minLength, $maxLength, $field) {
         $errors = array();
         if ($string == '' || $string == null) {
             $errors[] = $field . " can't be empty!";
         }
 
-        if (strlen($string) < $length) {
-            $errors[] = $field . ' must have at least ' . $length . ' characters';
+        if (strlen($string) < $minLength) {
+            $errors[] = $field . ' must have at least ' . $minLength . ' characters';
         }
+        $this -> validateStringMaxLength($string, $maxLength, $errors);
 
         return $errors;
+    }
+
+    public function validateStringMaxLength($string, $maxLength, $field, $errors) {
+        if (strlen($string) > $maxLength) {
+            $errors[] = $field . 'must have less than ' . $maxLength . ' characters';
+        }
     }
 
 }

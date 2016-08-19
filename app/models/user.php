@@ -116,7 +116,7 @@ class User extends BaseModel {
     }
 
     public function validateUsername() {
-        return $this -> validateStringLength($this -> username, 3, 'Username');
+        return $this -> validateStringLength($this -> username, 3, 50, 'Username');
     }
 
     private function validatePassword() {
@@ -126,6 +126,7 @@ class User extends BaseModel {
         }
 
         $this -> validatePassHasCertainThings($errors);
+        $this -> validateStringMaxLength($this -> password, 100, 'Password', $errors);
 
         $errors = array_merge($errors, $this -> validateStringLength($this -> password, 8, 'Password'));
         return $errors;
@@ -148,6 +149,7 @@ class User extends BaseModel {
         }
 
         $this -> validatePassHasCertainThings($errors);
+        $this -> validateStringMaxLength($this -> password, 100, 'Password', $errors);
         $errors = array_merge($errors, $this -> validateStringLength($this -> newPassword, 8, 'Password'));
         return $errors;
 
