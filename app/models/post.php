@@ -77,7 +77,7 @@ class Post extends BaseModel {
 
     private function setThreadId($query) {
         $row = $query -> fetch();
-        $this -> thread_id = $row['thread_id'];
+        $this -> threadId = $row['thread_id'];
     }
 
     private function validateMessage() {
@@ -85,22 +85,18 @@ class Post extends BaseModel {
     }
 
     private function validateIds() {
-        $errors = $this -> validateFieldsExist(array('User' => $this -> userId, 'Thread' => $this -> threadId));
+        $errors = $this -> validateFieldsExist(array('User' => $this -> userId));
         if ($errors) {
             return $errors;
         }
 
-        $query = DB::connection() -> prepare('SELECT u.id AS user_id, t.id AS thread_id FROM thread t, forum_user u WHERE u.id = :userId AND t.id = :threadId');
-        $query -> execute(array('userId' => $this -> userId, 'threadId' => $this -> threadId));
+        $query = DB::connection() -> prepare('SELECT u.id AS user_id, t.id AS thread_id FROM thread t, forum_user u WHERE u.id = :userId');
+        $query -> execute(array('userId' => $this -> userId));
 
         $row = $query -> fetch();
 
-        if (!$row['user_id']) {
+        if (!$row) {
             $errors[] = 'User must exist!';
-        }
-
-        if (!$row['thread_id']) {
-            $errors[] = 'Thread must exist!';
         }
 
         return $errors;

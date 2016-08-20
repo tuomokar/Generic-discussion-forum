@@ -9,7 +9,7 @@ Links:
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
 * [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
-Note that while everything apart from logging in is functional now (as in fetching things from database and removing and editing them), there is no password security yet (salt and such) and there are no validations except for user.
+Everything, apart from logging in should be ore or less functional now. That is, the data in the pages is fetched from database, and you can edit and remove everything. Things have validations, but there is no password security yet.
 
 # Project description
 

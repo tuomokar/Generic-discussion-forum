@@ -6,11 +6,22 @@
     <div>
         <h1>Post new thread</h1>
     </div>
+
+    {% if errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
     <div>
         <form method="post" action="{{base_path}}/threads/new">
             <div class="form-group">
                 <label for="new-thread">Topic group:</label>
-                <select name="topic_group_id" class="form-control" id="new-thread">
+                <select name="topicGroupId" class="form-control" id="new-thread">
                     {% for group in topicGroups %}
                     <option value="{{group.id}}">{{group.name}}</option>
                     {% endfor %}
@@ -18,12 +29,12 @@
             </div>
             <div class="form-group">
                 <label>Title:</label>
-                <input name="title" class="form-control" type="text">
+                <input name="title" class="form-control" type="text" value="{{attributes.title}}">
             </div>
 
             <div class="form-group">
                 <label for="comment">Message:</label>
-                <textarea name="message" class="form-control" rows=7 id="comment"></textarea>
+                <textarea name="message" class="form-control" rows=7 id="comment">{{attributes.message}}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit new thread</button>

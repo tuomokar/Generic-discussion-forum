@@ -33,7 +33,7 @@ CREATE TABLE Topic_group(
 
 CREATE TABLE Thread(
   id SERIAL PRIMARY KEY,
-  topic_group_id INTEGER REFERENCES Topic_group(id) ON DELETE CASCADE,
+  topic_group_id INTEGER REFERENCES Topic_group(id) ON DELETE CASCADE NOT NULL,
   title VARCHAR(50),
   created DATE NOT NULL,
   edited DATE
@@ -41,8 +41,8 @@ CREATE TABLE Thread(
 
 CREATE TABLE Post(
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
-  thread_id INTEGER REFERENCES Thread(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE NOT NULL,
+  thread_id INTEGER REFERENCES Thread(id) ON DELETE CASCADE NOT NULL,
   message TEXT NOT NULL,
   created TIMESTAMP NOT NULL,
   edited TIMESTAMP

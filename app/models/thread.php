@@ -2,7 +2,7 @@
 
 class Thread extends BaseModel {
 
-    public $id, $title, $created, $edited, $creator, $topipGroupId, $postCount, $group;
+    public $id, $title, $created, $edited, $creator, $topicGroupId, $postCount, $group;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -20,9 +20,9 @@ class Thread extends BaseModel {
         }
 
         return new Thread(array(
-            'id' => $row['id'],
+            'id' => $id,
             'title' => $row['title'],
-            '$topipGroupId' => $row['topic_group_id'],
+            'topicGroupId' => $row['topic_group_id'],
             'group' => $row['group']
         ));
     }
@@ -60,14 +60,14 @@ class Thread extends BaseModel {
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO thread (title, topic_group_id, created) 
                                                 VALUES(:title, :topicGroupId, CURRENT_DATE) RETURNING id');
-        $query -> execute(array('title' => $this -> title, 'topicGroupId' => $this -> topipGroupId));
+        $query -> execute(array('title' => $this -> title, 'topicGroupId' => $this -> topicGroupId));
 
         $row = $query -> fetch();
         $this -> id = $row['id'];
     }
 
     public function update() {
-        $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = CURRENT_DATE WHERE id = :id RETURNING id');
+        $query = DB::connection() -> prepare('UPDATE thread SET title = :title, edited = CURRENT_DATE WHERE id = :id');
         $query -> execute(array('title' => $this -> title, 'id' => $this -> id));
     }
 
@@ -78,4 +78,29 @@ class Thread extends BaseModel {
         $row = $query -> fetch();
         $this -> topipGroupId = $row['topic_group_id'];
     }
+
+    public function validateWhenSaving() {
+        return $this -> validateTitle();
+    }
+
+    private function validateTitle() {
+        return $this -> validateStringLength($this -> title, 2, 50, 'Title');
+    }
+
+    public function validateWhenUpdating() {
+        $errors = $this -> validateTitle();
+        return array_merge($errors, $this -> validateGroupId());
+    }
+
+    private function validateGroupId() {
+        $query = DB::connection() -> prepare('SELECT id FROM topic_group WHERE id = :id');
+        $query -> execute(array('id' => $this -> topicGroupId));
+
+        $row = $query -> fetch();
+        if (!$row) {
+            return array('Topic group must exist!');
+        }
+        return array();
+    }
+
 }
