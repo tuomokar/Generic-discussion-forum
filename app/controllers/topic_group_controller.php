@@ -11,20 +11,20 @@ class TopicGroupController extends BaseController{
     }
 
     public static function edit($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $topicGroup = TopicGroup::find($id);
         View::make('topic-groups/topic_group_edit.html', array('topicGroup' => $topicGroup));
     }
 
     public static function createNew() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         View::make('topic-groups/topic_group_new.html');
     }
 
     public static function save() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $params = $_POST;
 
@@ -45,7 +45,7 @@ class TopicGroupController extends BaseController{
     }
 
     public static function update($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $params = $_POST;
 
@@ -68,7 +68,7 @@ class TopicGroupController extends BaseController{
     }
 
     public static function destroy($id) {
-        self::checkPermission();
+        self::userLoggedIn();
         $topicGroup = new TopicGroup(array('id' => $id));
 
         $topicGroup -> destroy();

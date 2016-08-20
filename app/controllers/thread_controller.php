@@ -3,7 +3,7 @@
 class ThreadController extends BaseController {
 
     public static function createNew() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $topicGroups = TopicGroup::fetchIdAndName();
         View::make('threads/thread_new.html', array('topicGroups' => $topicGroups));
@@ -18,14 +18,14 @@ class ThreadController extends BaseController {
     }
 
     public static function edit($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $thread = Thread::find($id);
         View::make('threads/thread_edit.html', array('thread' => $thread));
     }
 
     public static function save() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $params = $_POST;
 
@@ -59,7 +59,7 @@ class ThreadController extends BaseController {
     }
 
     public static function update($id) {
-        self::checkPermission();
+        self::userLoggedIn();
         $params = $_POST;
 
         $attributes = array(
@@ -80,7 +80,7 @@ class ThreadController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::checkPermission();
+        self::userLoggedIn();
         $thread = new Thread(array('id' => $id));
         $thread -> destroy();
 

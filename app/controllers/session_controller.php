@@ -15,7 +15,7 @@ class SessionController extends BaseController {
     }
 
     public static function logout() {
-        self::checkPermission();
+        self::userLoggedIn();
         $message = "Logged out successfully";
 
         if (!isset($_SESSION['user'])) {

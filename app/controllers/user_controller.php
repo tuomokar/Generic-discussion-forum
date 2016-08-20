@@ -12,14 +12,14 @@ class UserController extends BaseController {
     }
 
     public static function edit($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $user = User::find($id);
         View::make('users/user_edit.html', array('user' => $user));
     }
 
     public static function listAll() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $users = User::all();
         View::make('users/user_list.html', array('users' => $users));
@@ -46,7 +46,7 @@ class UserController extends BaseController {
     }
 
     public static function update($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $params = $_POST;
 
@@ -69,7 +69,7 @@ class UserController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::checkPermission();
+        self::userLoggedIn();
         $user = new User(array('id' => $id));
 
         $user -> destroy();

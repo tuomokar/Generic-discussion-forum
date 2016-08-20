@@ -1,9 +1,9 @@
 <?php
 
-class MembershipController {
+class MembershipController extends BaseController {
 
     public static function save() {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $params = $_POST;
 
@@ -25,7 +25,7 @@ class MembershipController {
     }
 
     public static function destroy($id) {
-        self::checkPermission();
+        self::userLoggedIn();
 
         $membership = new Membership(array('id' => $id));
 
