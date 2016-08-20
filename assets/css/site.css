@@ -130,3 +130,8 @@ img {
   font-size: xx-small;
   color: #31b0d5;
 }
+
+.linkButton {
+  background: none;
+  text-decoration: none;
+}

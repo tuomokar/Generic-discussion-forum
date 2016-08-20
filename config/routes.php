@@ -158,6 +158,6 @@ $routes -> post('/login', function() {
     SessionController::login();
 });
 
-$routes -> post('logout', function() {
+$routes -> post('/logout', function() {
     SessionController::logout();
 });
