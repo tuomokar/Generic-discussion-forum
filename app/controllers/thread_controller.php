@@ -25,13 +25,13 @@ class ThreadController extends BaseController {
 
         $thread = new Thread(array(
             'title' => $params['title'],
-            'topic_group_id' => $params['topic_group_id']
+            'topicGroupId' => $params['topic_group_id']
         ));
         $thread -> save();
         $post = new Post(array(
             'message' => $params['message'],
-            'thread_id' => $thread -> id,
-            'user_id' => '2'        // Temp! Get it from session when that has been implemented
+            'threadId' => $thread -> id,
+            'userId' => '2'        // Temp! Get it from session when that has been implemented
 
         ));
         $post -> save();
