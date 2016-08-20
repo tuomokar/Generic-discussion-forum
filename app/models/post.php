@@ -2,7 +2,7 @@
 
 class Post extends BaseModel {
 
-    public $id, $message, $created, $edited, $user_id, $thread_id, $creator, $thread, $numberInThread;
+    public $id, $message, $created, $edited, $userId, $threadId, $creator, $thread, $numberInThread;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -32,7 +32,7 @@ class Post extends BaseModel {
             'created' => $row['created'],
             'edited' => $row['edited'],
             'user_id' => $row['user_id'],
-            'thread_id' => $row['thread_id'],
+            'threadId' => $row['thread_id'],
             'creator' => $row['creator'],
             'thread' => $row['thread']
             // if possible, include also the info on the number of the post within the thread here
@@ -57,8 +57,8 @@ class Post extends BaseModel {
 
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO post (user_id, thread_id, message, created)
-                                                VALUES (:user_id, :thread_id, :message, now())');
-        $query -> execute(array('user_id' => $this -> user_id, 'thread_id' => $this -> thread_id, 'message' => $this -> message));
+                                                VALUES (:userId, :threadId, :message, now())');
+        $query -> execute(array('userId' => $this -> userId, 'threadId' => $this -> threadId, 'message' => $this -> message));
     }
 
     public function update() {
@@ -79,4 +79,5 @@ class Post extends BaseModel {
         $row = $query -> fetch();
         $this -> thread_id = $row['thread_id'];
     }
+
 }

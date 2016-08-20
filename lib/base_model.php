@@ -12,10 +12,13 @@ class BaseModel{
         }
     }
 
-    public function errors(){
-        $errors = array();
+    public function errors() {
+        if (!$this -> validators) {
+            return;
+        }
 
-        foreach($this -> validators as $validator){
+        $errors = array();
+        foreach($this -> validators as $validator) {
             $validatorErrors = $this -> {$validator}();
             $errors = array_merge($errors, $validatorErrors);
         }

@@ -8,7 +8,7 @@ class PostController extends BaseController {
     }
 
     public static function createNew($threadId) {
-        View::make('posts/post_new.html', array('thread_id' => $threadId));
+        View::make('posts/post_new.html', array('threadId' => $threadId));
     }
 
     public static function edit($id) {
@@ -21,8 +21,8 @@ class PostController extends BaseController {
 
         $post = new Post(array(
             'message' => $params['message'],
-            'user_id' => '3',   // TEMP! Get it from session once that is implemented
-            'thread_id' => $threadId
+            'userId' => '3',   // TEMP! Get it from session once that is implemented
+            'threadId' => $threadId
         ));
 
         $post -> save();
@@ -40,7 +40,7 @@ class PostController extends BaseController {
 
         $post -> update();
 
-        Redirect::to('/threads/' . $post -> thread_id);
+        Redirect::to('/threads/' . $post -> threadId);
     }
 
     public static function destroy($id) {
@@ -50,6 +50,6 @@ class PostController extends BaseController {
 
         $post-> destroy();
 
-        Redirect::to('/threads/' . $post -> thread_id, array('message' => 'Post deleted successfully'));
+        Redirect::to('/threads/' . $post -> threadId, array('message' => 'Post deleted successfully'));
     }
 }

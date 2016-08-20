@@ -53,11 +53,10 @@ class ThreadController extends BaseController {
         Redirect::to('/threads/' . $thread -> id, array('message' => 'Edited thread successfully'));
     }
 
-    // post destroy
     public static function destroy($id) {
         $thread = new Thread(array('id' => $id));
         $thread -> destroy();
 
-        Redirect::to('/topic-groups/' . $thread -> topic_group_id, array('message' => 'Removed thread successfully'));
+        Redirect::to('/topic-groups/' . $thread -> topipGroupId, array('message' => 'Removed thread successfully'));
     }
 }

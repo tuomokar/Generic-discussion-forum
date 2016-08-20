@@ -43,7 +43,7 @@ CREATE TABLE Post(
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES Forum_user(id) ON DELETE CASCADE,
   thread_id INTEGER REFERENCES Thread(id) ON DELETE CASCADE,
-  message TEXT,
+  message TEXT NOT NULL,
   created TIMESTAMP NOT NULL,
   edited TIMESTAMP
 );

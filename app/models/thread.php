@@ -2,7 +2,7 @@
 
 class Thread extends BaseModel {
 
-    public $id, $title, $created, $edited, $creator, $topic_group_id, $postCount, $group;
+    public $id, $title, $created, $edited, $creator, $topipGroupId, $postCount, $group;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -22,7 +22,7 @@ class Thread extends BaseModel {
         return new Thread(array(
             'id' => $row['id'],
             'title' => $row['title'],
-            'topic_group_id' => $row['topic_group_id'],
+            '$topipGroupId' => $row['topic_group_id'],
             'group' => $row['group']
         ));
     }
@@ -59,8 +59,8 @@ class Thread extends BaseModel {
 
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO thread (title, topic_group_id, created) 
-                                                VALUES(:title, :topic_group_id, CURRENT_DATE) RETURNING id');
-        $query -> execute(array('title' => $this -> title,'topic_group_id' => $this -> topic_group_id));
+                                                VALUES(:title, :topicGroupId, CURRENT_DATE) RETURNING id');
+        $query -> execute(array('title' => $this -> title, 'topicGroupId' => $this -> topipGroupId));
 
         $row = $query -> fetch();
         $this -> id = $row['id'];
@@ -76,6 +76,6 @@ class Thread extends BaseModel {
         $query -> execute(array('id' => $this -> id));
 
         $row = $query -> fetch();
-        $this -> topic_group_id = $row['topic_group_id'];
+        $this -> topipGroupId = $row['topic_group_id'];
     }
 }
