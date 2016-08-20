@@ -177,4 +177,15 @@ class User extends BaseModel {
         return (strcmp($string1, $string2) !== 0);
     }
 
+    public static function authenticate($username, $password) {
+        $query = DB::connection() -> prepare('SELECT id, username, password FROM forum_user WHERE username = :username AND password = :password LIMIT 1');
+        $query -> execute(array('username' => $username, 'password' => $password));
+
+        $row = $query -> fetch();
+        if ($row) {
+            return new User(array('id' => $row['id'], 'username' => $row['username']));
+        }
+        return null;
+    }
+
 }

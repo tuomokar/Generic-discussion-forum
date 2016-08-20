@@ -152,3 +152,12 @@ $routes -> post('/memberships/new', function() {
 $routes -> post('/memberships/:id/destroy', function($id) {
     MembershipController::destroy($id);
 });
+
+// -------------- Session functions ------------------
+$routes -> post('/login', function() {
+    SessionController::login();
+});
+
+$routes -> post('logout', function() {
+    SessionController::logout();
+});

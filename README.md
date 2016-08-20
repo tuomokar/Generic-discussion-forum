@@ -9,7 +9,7 @@ Links:
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
 * [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
-Everything, apart from logging in should be ore or less functional now. That is, the data in the pages is fetched from database, and you can edit and remove everything. Things have validations, but there is no password security yet.
+Everything should be ore or less functional now. That is, the data in the pages is fetched from database, and you can edit and remove everything. Things have validations, but there is no password security yet. In general there is still a lot of work polishing to do.
 
 # Project description
 
