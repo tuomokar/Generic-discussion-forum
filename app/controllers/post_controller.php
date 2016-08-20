@@ -25,6 +25,11 @@ class PostController extends BaseController {
             'threadId' => $threadId
         ));
 
+        $errors = $post -> validateWhenSaving();
+        if ($errors) {
+            View::make('posts/post_new.html', array('errors' => $errors, 'threadId' => $threadId));
+        }
+
         $post -> save();
 
         Redirect::to('/threads/' . $threadId);
@@ -37,6 +42,11 @@ class PostController extends BaseController {
             'id' => $id,
             'message' => $params['message']
         ));
+
+        $errors = $post -> validateWhenUpdating();
+        if ($errors) {
+            View::make('posts/post_edit.html', array('errors' => $errors));
+        }
 
         $post -> update();
 

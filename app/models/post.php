@@ -80,4 +80,38 @@ class Post extends BaseModel {
         $this -> thread_id = $row['thread_id'];
     }
 
+    private function validateMessage() {
+        return $this -> validateFieldsExist(array('Message' => $this -> message));
+    }
+
+    private function validateIds() {
+        $errors = $this -> validateFieldsExist(array('User' => $this -> userId, 'Thread' => $this -> threadId));
+        if ($errors) {
+            return $errors;
+        }
+
+        $query = DB::connection() -> prepare('SELECT u.id AS user_id, t.id AS thread_id FROM thread t, forum_user u WHERE u.id = :userId AND t.id = :threadId');
+        $query -> execute(array('userId' => $this -> userId, 'threadId' => $this -> threadId));
+
+        $row = $query -> fetch();
+
+        if (!$row['user_id']) {
+            $errors[] = 'User must exist!';
+        }
+
+        if (!$row['thread_id']) {
+            $errors[] = 'Thread must exist!';
+        }
+
+        return $errors;
+    }
+
+    public function validateWhenSaving() {
+        $errors = $this -> validateIds();
+        return array_merge($errors, $this -> validateMessage());
+    }
+
+    public function validateWhenUpdating() {
+        return $this -> validateMessage();
+    }
 }
