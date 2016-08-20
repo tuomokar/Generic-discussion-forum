@@ -1,6 +1,6 @@
 <?php
 
-class SessionController {
+class SessionController extends BaseController {
 
     public static function login() {
         $params = $_POST;
@@ -25,8 +25,6 @@ class SessionController {
         }
 
         Redirect::to('/', array('message' => $message));
-
-
     }
 
     public static function currentUser() {
