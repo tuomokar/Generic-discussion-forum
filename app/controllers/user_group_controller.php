@@ -10,20 +10,27 @@ class UserGroupController extends BaseController{
     }
 
     public static function createNew() {
+        self::checkPermission();
         View::make('user-groups/user_group_new.html');
     }
 
     public static function edit($id) {
+        self::checkPermission();
+
         $group = UserGroup::find($id);
         View::make('user-groups/user_group_edit.html', array('group' => $group));
     }
 
     public static function listAll() {
+        self::checkPermission();
+
         $groups = UserGroup::all();
         View::make('user-groups/user_group_list.html', array('groups' => $groups));
     }
 
     public static function userGroupSave() {
+        self::checkPermission();
+
         $params = $_POST;
 
         $attributes = array(
@@ -43,6 +50,8 @@ class UserGroupController extends BaseController{
     }
 
     public static function update($id) {
+        self::checkPermission();
+
         $params = $_POST;
 
 
@@ -64,6 +73,8 @@ class UserGroupController extends BaseController{
     }
 
     public static function destroy($id) {
+        self::checkPermission();
+
         $group = new UserGroup(array('id' => $id));
         $group -> destroy();
 

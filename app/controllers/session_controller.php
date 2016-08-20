@@ -15,6 +15,7 @@ class SessionController {
     }
 
     public static function logout() {
+        self::checkPermission();
         $message = "Logged out successfully";
 
         if (!isset($_SESSION['user'])) {

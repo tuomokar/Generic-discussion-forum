@@ -3,6 +3,8 @@
 class MembershipController {
 
     public static function save() {
+        self::checkPermission();
+
         $params = $_POST;
 
         $attributes = array(
@@ -23,6 +25,8 @@ class MembershipController {
     }
 
     public static function destroy($id) {
+        self::checkPermission();
+
         $membership = new Membership(array('id' => $id));
 
         $membership -> destroy();

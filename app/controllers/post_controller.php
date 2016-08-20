@@ -8,15 +8,21 @@ class PostController extends BaseController {
     }
 
     public static function createNew($threadId) {
+        self::checkPermission();
+
         View::make('posts/post_new.html', array('threadId' => $threadId));
     }
 
     public static function edit($id) {
+        self::checkPermission();
+
         $post = Post::fetchIdAndMessage($id);
         View::make('posts/post_edit.html', array('post' => $post));
     }
 
     public static function save($threadId) {
+        self::checkPermission();
+
         $params = $_POST;
 
         $post = new Post(array(
@@ -36,6 +42,8 @@ class PostController extends BaseController {
     }
 
     public static function update($id) {
+        self::checkPermission();
+
         $params = $_POST;
 
         $post = new Post(array(
@@ -54,6 +62,8 @@ class PostController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::checkPermission();
+
         $post = new Post(array(
             'id' => $id
         ));

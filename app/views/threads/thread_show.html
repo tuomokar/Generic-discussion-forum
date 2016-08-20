@@ -10,6 +10,7 @@
         <div class="margin-down">
             <h2>{{thread.title}}</h2>
         </div>
+        {% if currentUser %}
         <div class="edit">
             <a href="{{base_path}}/threads/{{thread.id}}/edit" class="btn btn-warning">Edit</a>
         </div>
@@ -18,17 +19,25 @@
                 <button type="submit" class="btn btn-danger">Remove</button>
             </form>
         </div>
+        {% endif %}
     </div>
     <!-- Content of the thread -->
     <div class="posts">
         {% for post in posts %}
         <div class="post">
             <div class="post-info">
-                <h6><a href="{{base_path}}/users/{{post.creator_id}}">{{post.creator}}</a></h6>
+                <h6>
+                    {% if currentUser %}
+                    <a href="{{base_path}}/users/{{post.creator_id}}">{{post.creator}}</a>
+                    {% else %}
+                    {{post.creator}}
+                    {% endif %}
+                </h6>
                 Member</br>
                 {{post.created}}
 
                 <div class="margin-up">
+                    {% if currentUser %}
                     <div>
                         <p><a href="{{base_path}}/posts/{{post.id}}/edit" class="btn btn-warning">Edit</a></p>
                     </div>
@@ -37,6 +46,7 @@
                             <button type="submit" class="btn btn-danger">Remove</button>
                         </form>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="post-text">
@@ -56,9 +66,11 @@
         {% endfor %}
     </div>
     <!-- Content of the thread ends -->
+    {% if currentUser %}
     <div>
         <a href="{{base_path}}/threads/{{thread.id}}/posts/new" class="btn btn-primary post-reply-btn">Post reply</a>
     </div>
+    {% endif %}
 </div>
 <!-- Thread area ends -->
 

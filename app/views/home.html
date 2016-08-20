@@ -15,6 +15,8 @@
         <h3>
             <a href="{{base_path}}/topic-groups/{{group.id}}">{{group.name}} <span class="glyphicon glyphicon-chevron-right"></span></a>
         </h3>
+
+        {% if currentUser %}
         <div class="edit">
             <a href="{{base_path}}/topic-groups/{{group.id}}/edit" class="btn btn-warning">Edit</a>
         </div>
@@ -23,6 +25,7 @@
                 <button type="submit" class="btn btn-danger">Remove</button>
             </form>
         </div>
+        {% endif %}
         <p class="topic-group-info">
             {{group.info}}
         </p>
@@ -31,10 +34,13 @@
 
 </div>
 
+{% if currentUser %}
 <!-- Create new topic group-->
 <div>
     <div>
         <a href="{{base_path}}/topic-groups/new" class="btn btn-primary new-button margin-up"><h4>Create new topic group</h4></a>
     </div>
 </div>
+{% endif %}
+
 {% endblock %}

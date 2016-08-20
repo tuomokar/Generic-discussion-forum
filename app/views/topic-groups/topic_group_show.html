@@ -3,7 +3,9 @@
 <!-- Show topic group -->
 <div>
     <div class="margin-down">
+        {% if currentUser %}
         <a href="{{base_path}}/threads/new" class="btn btn-primary new-button pull-right"><h4>Post new thread</h4></a>
+        {% endif %}
         <h1>Threads in forum: {{topicGroup.name}}</h1>
     </div>
     <div>
