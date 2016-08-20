@@ -62,7 +62,7 @@ class PostController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $post = new Post(array(
             'id' => $id

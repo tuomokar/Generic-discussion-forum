@@ -3,6 +3,8 @@
 class UserGroupController extends BaseController{
 
     public static function show($id) {
+        self::userIsAdmin();
+
         $group = UserGroup::find($id);
         $usersNotInGroup = Membership::usersNotInGroup($id);
         View::make('user-groups/user_group_show.html',
@@ -10,26 +12,26 @@ class UserGroupController extends BaseController{
     }
 
     public static function createNew() {
-        self::userLoggedIn();
+        self::userIsAdmin();
         View::make('user-groups/user_group_new.html');
     }
 
     public static function edit($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $group = UserGroup::find($id);
         View::make('user-groups/user_group_edit.html', array('group' => $group));
     }
 
     public static function listAll() {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $groups = UserGroup::all();
         View::make('user-groups/user_group_list.html', array('groups' => $groups));
     }
 
     public static function userGroupSave() {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $params = $_POST;
 
@@ -50,7 +52,7 @@ class UserGroupController extends BaseController{
     }
 
     public static function update($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();;
 
         $params = $_POST;
 
@@ -73,7 +75,7 @@ class UserGroupController extends BaseController{
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $group = new UserGroup(array('id' => $id));
         $group -> destroy();

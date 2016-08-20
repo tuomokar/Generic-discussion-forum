@@ -3,6 +3,7 @@
 class UserController extends BaseController {
 
     public static function show($id) {
+        self::userLoggedIn();
         $user = User::find($id);
         View::make('users/user_show.html', array('user' => $user));
     }
@@ -12,7 +13,7 @@ class UserController extends BaseController {
     }
 
     public static function edit($id) {
-        self::userLoggedIn();
+        self::userLoggedIn();       // add validation that the user trying to edit is either admin or the user the profile belongs to
 
         $user = User::find($id);
         View::make('users/user_edit.html', array('user' => $user));
@@ -46,7 +47,7 @@ class UserController extends BaseController {
     }
 
     public static function update($id) {
-        self::userLoggedIn();
+        self::userLoggedIn();   // add validation that the user trying to edit is either admin or the user the profile belongs to;
 
         $params = $_POST;
 
@@ -69,7 +70,7 @@ class UserController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
         $user = new User(array('id' => $id));
 
         $user -> destroy();

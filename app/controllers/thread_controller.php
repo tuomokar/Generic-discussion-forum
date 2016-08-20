@@ -80,7 +80,7 @@ class ThreadController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
         $thread = new Thread(array('id' => $id));
         $thread -> destroy();
 

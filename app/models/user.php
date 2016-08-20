@@ -2,7 +2,7 @@
 
 class User extends BaseModel {
 
-    public $id, $username, $password, $passwordConfirmation, $newPassword, $info, $created, $edited, $postCount;
+    public $id, $username, $password, $passwordConfirmation, $newPassword, $info, $admin, $created, $edited, $postCount;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -40,7 +40,7 @@ class User extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection() -> prepare('SELECT id, username, info, created FROM forum_user WHERE id = :id');
+        $query = DB::connection() -> prepare('SELECT id, username, info, admin, created FROM forum_user WHERE id = :id');
         $query -> execute(array('id' => $id));
 
         $row = $query -> fetch();
@@ -53,6 +53,7 @@ class User extends BaseModel {
             'id' => $row['id'],
             'username' => $row['username'],
             'info' => $row['info'],
+            'admin' => $row['admin'],
             'created' => $row['created']
         ));
     }

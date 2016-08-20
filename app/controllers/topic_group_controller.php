@@ -11,20 +11,20 @@ class TopicGroupController extends BaseController{
     }
 
     public static function edit($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $topicGroup = TopicGroup::find($id);
         View::make('topic-groups/topic_group_edit.html', array('topicGroup' => $topicGroup));
     }
 
     public static function createNew() {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         View::make('topic-groups/topic_group_new.html');
     }
 
     public static function save() {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $params = $_POST;
 
@@ -45,7 +45,7 @@ class TopicGroupController extends BaseController{
     }
 
     public static function update($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $params = $_POST;
 
@@ -68,7 +68,7 @@ class TopicGroupController extends BaseController{
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
         $topicGroup = new TopicGroup(array('id' => $id));
 
         $topicGroup -> destroy();

@@ -3,7 +3,7 @@
 class MembershipController extends BaseController {
 
     public static function save() {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $params = $_POST;
 
@@ -25,7 +25,7 @@ class MembershipController extends BaseController {
     }
 
     public static function destroy($id) {
-        self::userLoggedIn();
+        self::userIsAdmin();
 
         $membership = new Membership(array('id' => $id));
 
