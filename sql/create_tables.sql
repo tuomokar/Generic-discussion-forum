@@ -4,6 +4,7 @@ CREATE TABLE Forum_user(
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   info VARCHAR(400),
+  admin BOOLEAN NOT NULL DEFAULT FALSE,
   created DATE NOT NULL,
   edited DATE
 );
