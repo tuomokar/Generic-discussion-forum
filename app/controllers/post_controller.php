@@ -14,7 +14,7 @@ class PostController extends BaseController {
     }
 
     public static function edit($id) {
-        self::userLoggedIn();
+        self::adminOrCreator($id);
 
         $post = Post::fetchIdAndMessage($id);
         View::make('posts/post_edit.html', array('post' => $post));
@@ -42,7 +42,7 @@ class PostController extends BaseController {
     }
 
     public static function update($id) {
-        self::userLoggedIn();
+        self::adminOrCreator($id);
 
         $params = $_POST;
 

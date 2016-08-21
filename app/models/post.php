@@ -2,7 +2,7 @@
 
 class Post extends BaseModel {
 
-    public $id, $message, $created, $edited, $userId, $threadId, $creator, $thread, $numberInThread;
+    public $id, $message, $created, $edited, $userId, $threadId, $creator, $creatorId, $thread, $numberInThread;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -31,7 +31,7 @@ class Post extends BaseModel {
             'message' => nl2br($row['message']),
             'created' => $row['created'],
             'edited' => $row['edited'],
-            'user_id' => $row['user_id'],
+            'creatorId' => $row['user_id'],
             'threadId' => $row['thread_id'],
             'creator' => $row['creator'],
             'thread' => $row['thread']
@@ -109,5 +109,13 @@ class Post extends BaseModel {
 
     public function validateWhenUpdating() {
         return $this -> validateMessage();
+    }
+
+    public static function findCreatorId($postId) {
+        $query = DB::connection() -> prepare('SELECT user_id FROM post WHERE id = :id LIMIT 1');
+        $query -> execute(array('id' => $postId));
+
+        $row = $query -> fetch();
+        return $row['user_id'];
     }
 }
