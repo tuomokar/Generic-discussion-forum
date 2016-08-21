@@ -27,7 +27,7 @@ class PostController extends BaseController {
 
         $post = new Post(array(
             'message' => $params['message'],
-            'userId' => '3',   // TEMP! Get it from session once that is implemented
+            'userId' => SessionController::currentUser() -> id,
             'threadId' => $threadId
         ));
 
