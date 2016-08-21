@@ -9,7 +9,15 @@ Links:
 * [The application](http://tuomokar.users.cs.helsinki.fi/tsoha/)
 * [Documentation](https://github.com/tuomokar/Tsoha-Bootstrap/tree/master/doc/documentation.pdf)
 
-Everything should be more or less functional now. That is, the data in the pages is fetched from database, and you can edit and remove everything. Things have validations, but there is no password security yet. Any admin specific functions are missing too (for now you can do everything if you're just logged in). In general there is still a lot of work polishing to do.
+Admin account access:
+- username: admin
+- password: admin1pass#
+
+Basic user account access:
+- username: user1
+- password user1pass#
+
+Everything should be more or less functional now. That is, the data in the pages is fetched from database, and you can edit and remove everything. Things have validations, but there is no password security yet. Some permissions might not be set correctly yet also. In general there is still a lot of work polishing to do.
 
 # Project description
 
