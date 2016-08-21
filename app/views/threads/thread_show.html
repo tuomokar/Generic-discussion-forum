@@ -10,7 +10,7 @@
         <div class="margin-down">
             <h2>{{thread.title}}</h2>
         </div>
-        {% if currentUser %}
+        {% if currentUser.admin %}
         <div class="edit">
             <a href="{{base_path}}/threads/{{thread.id}}/edit" class="btn btn-warning">Edit</a>
         </div>
@@ -28,7 +28,7 @@
             <div class="post-info">
                 <h6>
                     {% if currentUser %}
-                    <a href="{{base_path}}/users/{{post.creator_id}}">{{post.creator}}</a>
+                    <a href="{{base_path}}/users/{{post.creatorId}}">{{post.creator}}</a>
                     {% else %}
                     {{post.creator}}
                     {% endif %}
@@ -37,10 +37,12 @@
                 {{post.created}}
 
                 <div class="margin-up">
-                    {% if currentUser %}
+                    {% if currentUser.id == post.creatorId or currentUser.admin %}
                     <div>
                         <p><a href="{{base_path}}/posts/{{post.id}}/edit" class="btn btn-warning">Edit</a></p>
                     </div>
+                    {% endif %}
+                    {% if currentUser.admin %}
                     <div>
                         <form method="post" action="{{base_path}}/posts/{{post.id}}/destroy">
                             <button type="submit" class="btn btn-danger">Remove</button>

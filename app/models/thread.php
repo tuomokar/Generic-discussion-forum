@@ -48,7 +48,7 @@ class Thread extends BaseModel {
                 'message' => nl2br($row['message']),
                 'created' => $row['created'],
                 'edited' => $row['edited'],
-                'user_id' => $row['user_id'],
+                'creatorId' => $row['user_id'],
                 'creator' => $row['creator'],
                 'numberInThread' => $i + 1
             ));

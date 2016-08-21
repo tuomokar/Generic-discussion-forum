@@ -16,7 +16,7 @@
             <a href="{{base_path}}/topic-groups/{{group.id}}">{{group.name}} <span class="glyphicon glyphicon-chevron-right"></span></a>
         </h3>
 
-        {% if currentUser %}
+        {% if currentUser.admin %}
         <div class="edit">
             <a href="{{base_path}}/topic-groups/{{group.id}}/edit" class="btn btn-warning">Edit</a>
         </div>
@@ -34,7 +34,7 @@
 
 </div>
 
-{% if currentUser %}
+{% if currentUser.admin %}
 <!-- Create new topic group-->
 <div>
     <div>

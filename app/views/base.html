@@ -34,6 +34,8 @@
           <a class="navbar-brand" href="{{base_path}}/users/new">Register</a>
           {% if currentUser %}
           <a class="navbar-brand" href="{{base_path}}/users/">Users</a>
+          {% endif %}
+          {% if currentUser.admin %}
           <a class="navbar-brand" href="{{base_path}}/user-groups">Groups</a>
           {% endif %}
         </div>

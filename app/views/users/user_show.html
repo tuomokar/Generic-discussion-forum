@@ -14,14 +14,18 @@
         </p>
     </div>
 
+    {% if (currentUser and currentUser.id == user.id) or currentUser.admin %}
     <div>
         <p><a href="{{base_path}}/users/{{user.id}}/edit" class="btn btn-warning">Edit</a></p>
     </div>
+    {% endif %}
+    {% if currentUser.admin %}
     <div>
         <form method="post" action="{{base_path}}/users/{{user.id}}/destroy">
             <button type="submit" class="btn btn-danger">Remove</button>
         </form>
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}
