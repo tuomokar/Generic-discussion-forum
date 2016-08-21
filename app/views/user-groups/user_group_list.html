@@ -23,7 +23,7 @@
             <td>{{group.memberCount}}</td>
             <td>{{group.edited}}</td>
             <td><a href="{{base_path}}/user-groups/{{group.id}}/edit" class="btn btn-warning pull-right">Edit</a></td>
-            <form method="post" action="{{base_path}}/user-groups/{{group.id}}/destroy">
+            <form method="post" class="destroy-form" action="{{base_path}}/user-groups/{{group.id}}/destroy">
                 <td><button type="submit" class="btn btn-danger">Remove</button></td>
             </form>
         </tr>

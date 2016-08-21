@@ -21,7 +21,7 @@
     {% endif %}
     {% if currentUser.admin %}
     <div>
-        <form method="post" action="{{base_path}}/users/{{user.id}}/destroy">
+        <form method="post" class="destroy-form" action="{{base_path}}/users/{{user.id}}/destroy">
             <button type="submit" class="btn btn-danger">Remove</button>
         </form>
     </div>

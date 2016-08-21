@@ -37,7 +37,7 @@
                 <td><a href="{{base_path}}/users/{{membership.userId}}" class="btn">{{membership.user}}</a></td>
                 <td class="text-right">{{membership.registered}}</td>
                 <td class="text-right">{{membership.userAdded}}</td>
-                <form method="post" action="{{base_path}}/memberships/{{membership.id}}/destroy">
+                <form method="post" class="destroy-form" action="{{base_path}}/memberships/{{membership.id}}/destroy">
                     <td><button type="submit" class="btn btn-danger pull-right">Remove</button></td>
                 </form>
             </tr>

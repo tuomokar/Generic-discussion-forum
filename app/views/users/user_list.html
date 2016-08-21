@@ -20,7 +20,7 @@
             <td class="text-right">{{user.postCount}}</td>
             {% if currentUser.admin %}
             <td><a href="{{base_path}}/users/{{user.id}}/edit" class="btn btn-warning pull-right">Edit</a></td>
-            <form method="post" action="{{base_path}}/users/{{user.id}}/destroy">
+            <form method="post" class="destroy-form" action="{{base_path}}/users/{{user.id}}/destroy">
                 <td><button type="submit" class="btn btn-danger pull-right">Remove</button></td>
             </form>
             {% endif %}
