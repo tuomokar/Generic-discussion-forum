@@ -1,0 +1,45 @@
+{% macro showPost(post, base_path, currentUser) %}
+{% import "macros/forms.html" as forms %}
+
+<div class="post">
+    <div class="post-info">
+        <h6>
+            {% if currentUser %}
+            <a href="{{base_path}}/users/{{post.creatorId}}">{{post.creator}}</a>
+            {% else %}
+            {{post.creator}}
+            {% endif %}
+        </h6>
+        Member</br>
+        {{post.created}}
+
+        <div class="margin-up">
+            {% if (currentUser.id == post.creatorId) or currentUser.admin %}
+            <div>
+                <p><a href="{{base_path}}/posts/{{post.id}}/edit" class="btn btn-warning">Edit</a></p>
+            </div>
+            {% endif %}
+            {% if currentUser.admin %}
+
+            {{forms.destroyButton("#{base_path}/posts/#{post.id}/destroy")}}
+
+            {% endif %}
+        </div>
+    </div>
+    <div class="post-text">
+        {{post.message | raw}}
+    </div>
+    <div class="thread-info-on-right">
+        <div class="post-number">
+            <a href="{{base_path}}/posts/{{post.id}}">#{{post.numberInThread}}</a>
+        </div>
+        {% if post.edited %}
+        <div class="edit-info">
+            Edited: {{post.edited}}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endmacro %}

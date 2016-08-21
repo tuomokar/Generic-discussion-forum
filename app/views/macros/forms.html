@@ -1,0 +1,20 @@
+{% macro destroyButton(action, divClass) %}
+<div class={{divClass}}>
+    <form method="post" class="destroy-form" action="{{action}}">
+        <button type="submit" class="btn btn-danger">Remove</button>
+    </form>
+</div>
+{% endmacro %}
+
+{% macro forumPostAction(action, post, text) %}
+<div>
+    <form method="post" action="{{action}}">
+        <div class="form-group">
+            <label for="post-text">Message:</label>
+            <textarea name="message" class="form-control" rows=7 id="post-text">{{post.message}}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{text}}</button>
+    </form>
+</div>
+{% endmacro %}

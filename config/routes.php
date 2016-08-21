@@ -110,7 +110,7 @@ $routes -> post('/threads/:threadId/posts/new', function($threadId) {
     PostController::save($threadId);
 });
 
-$routes -> post('posts/:id/destroy', function($id) {
+$routes -> post('/posts/:id/destroy', function($id) {
    PostController::destroy($id);
 });
 

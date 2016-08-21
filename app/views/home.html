@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% import "macros/forms.html" as forms %}
+
 <div class="page-header">
     <h1>Welcome to Gendifo</h1>
     <p>Gendifo is <i>the</i> generic discussion forum. </p>
@@ -20,11 +22,9 @@
         <div class="edit">
             <a href="{{base_path}}/topic-groups/{{group.id}}/edit" class="btn btn-warning">Edit</a>
         </div>
-        <div class="remove">
-            <form method="post" class="destroy-form" action="{{base_path}}/topic-groups/{{group.id}}/destroy">
-                <button type="submit" class="btn btn-danger">Remove</button>
-            </form>
-        </div>
+
+        {{forms.destroyButton("#{base_path}/topic-groups/#{group.id}/destroy", "remove")}}
+
         {% endif %}
         <p class="topic-group-info">
             {{group.info}}

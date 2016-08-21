@@ -1,51 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
+{% import "macros/post_macro.html" as forumPost %}
 
 <div class="thread">
 
     <h1><a href="{{base_path}}/threads/{{post.threadId}}">{{post.thread}}</a></h1>
-    <div class="post">
-        <div class="post-info">
-            <h6>
-                {% if currentUser %}
-                <a href="{{base_path}}/users/{{post.creatorId}}">{{post.creator}}</a>
-                {% else %}
-                {{post.creator}}
-                {% endif %}
-            </h6>
-            Member</br>
-            {{post.created}}
+    {{ forumPost.showPost("#{post}", "#{base_path}", "#{currentUser}") }}
 
-            <div class="margin-up">
-                {% if (currentUser.id == post.creatorId) or currentUser.admin %}
-                <div>
-                    <p><a href="{{base_path}}/posts/{{post.id}}/edit" class="btn btn-warning">Edit</a></p>
-                </div>
-                {% endif %}
-                {% if currentUser.admin %}
-                <div>
-                    <form method="post" class="destroy-form" action="{{base_path}}/posts/{{post.id}}/destroy">
-                        <button type="submit" class="btn btn-danger">Remove</button>
-                    </form>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="post-text">
-            {{post.message | raw}}
-        </div>
-        <div class="thread-info-on-right">
-            <div class="post-number">
-                <a href="{{base_path}}/posts/{{post.id}}">#{{post.numberInThread}}</a>
-            </div>
-            {% if post.edited %}
-            <div class="edit-info">
-                Edited: {{post.edited}}
-            </div>
-            {% endif %}
-        </div>
-
-    </div>
 </div>
 
 {% endblock %}
