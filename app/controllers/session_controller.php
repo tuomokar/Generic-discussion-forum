@@ -28,10 +28,9 @@ class SessionController extends BaseController {
     }
 
     public static function currentUser() {
-        $userId = $_SESSION['user'];
-        if (!$userId) {
+        if (!isset($_SESSION['user'])) {
             return null;
         }
-        return User::find($userId);
+        return User::find($_SESSION['user']);
     }
 }
