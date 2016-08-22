@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/loops.html" as loops %}
+{% import "macros/forms.html" as forms %}
 
 <!-- New topic group-->
 <div>
@@ -10,20 +11,7 @@
 
     {{ loops.errors("#{errors}") }}
 
-    <div>
-        <form method="post" action="{{base_path}}/topic-groups/new">
-            <div class="form-group">
-                <label>Title:</label>
-                <input name="name" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="info">Info:</label>
-                <textarea name="info" class="form-control" rows=3 id="info"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Create topic group</button>
-        </form>
-    </div>
+    {{ forms.topicGroupAction("#{base_path}/topic-groups/new", "Create", "#{attributes}") }}
 </div>
 <!-- New topic group ends -->
 {% endblock %}

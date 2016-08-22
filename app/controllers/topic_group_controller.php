@@ -59,7 +59,8 @@ class TopicGroupController extends BaseController{
 
         $errors = $topicGroup -> errors();
         if ($errors) {
-            View::make('topic-groups/topic_group_new.html', array('errors' => $errors, 'attributes' => $attributes));
+            $topicGroup = TopicGroup::find($id);
+            View::make('topic-groups/topic_group_edit.html', array('errors' => $errors, 'topicGroup' => $topicGroup));
         }
 
         $topicGroup -> update();
