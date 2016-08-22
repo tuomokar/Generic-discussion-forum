@@ -40,6 +40,23 @@ class UserGroup extends BaseModel {
         );
     }
 
+    public static function findOnlyNameAndInfo($id) {
+        $query = DB::connection() -> prepare('SELECT name, info FROM user_group WHERE id = :id LIMIT 1');
+        $query -> execute(array('id' => $id));
+
+        $row = $query -> fetch();
+
+        if (!$row) {
+            return null;
+        }
+
+        return new UserGroup(array(
+            'id' => $id,
+            'name' => $row['name'],
+            'info' => $row['info']
+        ));
+    }
+
     // method to update the edited field of user group externally
     public static function updateStatus($id) {
         $query = DB::connection() -> prepare('UPDATE user_group SET edited = CURRENT_DATE');

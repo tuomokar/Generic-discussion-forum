@@ -19,7 +19,7 @@ class UserGroupController extends BaseController{
     public static function edit($id) {
         self::userIsAdmin();
 
-        $group = UserGroup::find($id);
+        $group = UserGroup::findOnlyNameAndInfo($id);
         View::make('user-groups/user_group_edit.html', array('group' => $group));
     }
 
@@ -66,7 +66,8 @@ class UserGroupController extends BaseController{
 
         $errors = $group -> errors();
         if ($errors) {
-            View::make('user-groups/user_group_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+            $group = UserGroup::findOnlyNameAndInfo($id);
+            View::make('user-groups/user_group_edit.html', array('errors' => $errors, 'group' => $group));
         }
 
         $group -> update();
