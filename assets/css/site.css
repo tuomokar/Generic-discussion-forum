@@ -69,6 +69,8 @@ img {
 
   font-size: xx-small;
   float: left;
+
+  word-wrap: break-word;
 }
 
 .post-info a {
