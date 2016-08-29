@@ -29,8 +29,8 @@ class Post extends BaseModel {
         return new Post(array(
             'id' => $id,
             'message' => nl2br($row['message']),
-            'created' => $row['created'],
-            'edited' => $row['edited'],
+            'created' => date('d-m-Y H:i:s', strtotime($row['created'])),
+            'edited' => date('d-m-Y H:i:s', strtotime($row['edited'])),
             'creatorId' => $row['user_id'],
             'threadId' => $row['thread_id'],
             'creator' => $row['creator'],

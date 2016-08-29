@@ -20,11 +20,10 @@ class User extends BaseModel {
             $users[] = new User(array(
                 'id' => $id,
                 'username' => $row['username'],
-                'created' => $row['created'],
+                'created' => date('d-m-Y', strtotime($row['created'])),
                 'postCount' => User::countUsersPosts($id)
             ));
         }
-
         return $users;
     }
 
@@ -35,8 +34,6 @@ class User extends BaseModel {
         $countRow = $query -> fetch();
 
         return $countRow['count'];
-
-
     }
 
     public static function find($id) {
@@ -54,7 +51,7 @@ class User extends BaseModel {
             'username' => $row['username'],
             'info' => $row['info'],
             'admin' => $row['admin'],
-            'created' => $row['created']
+            'created' => date('d-m-Y', strtotime($row['created'])),
         ));
     }
 
@@ -64,7 +61,6 @@ class User extends BaseModel {
         $query -> execute(array('username' => $this -> username, 'info' => $this -> info, 'password' => $this -> password));
 
         $row = $query -> fetch();
-
         $this -> id = $row['id'];
     }
 
@@ -140,8 +136,6 @@ class User extends BaseModel {
     }
 
     public function validateWhenUpdating() {
-        $errors = array();
-
         $errors = $this -> validateFieldsExist(array('Password' => $this -> password));
 
         if ($errors) {
@@ -183,10 +177,10 @@ class User extends BaseModel {
         $query -> execute(array('username' => $username, 'password' => $password));
 
         $row = $query -> fetch();
-        if ($row) {
-            return new User(array('id' => $row['id'], 'username' => $row['username']));
+        if (!$row) {
+            return null;
         }
-        return null;
+        return new User(array('id' => $row['id'], 'username' => $row['username']));
     }
 
 }

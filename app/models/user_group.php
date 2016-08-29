@@ -21,11 +21,10 @@ class UserGroup extends BaseModel {
             $userGroups[] = new UserGroup(array(
                 'id' => $id,
                 'name' => $row['name'],
-                'edited' => $row['edited'],
+                'edited' => date('d-m-Y', strtotime($row['edited'])),
                 'memberCount' => Membership::memberCountOfGroup($id)
             ));
         }
-
         return $userGroups;
     }
 
@@ -90,8 +89,8 @@ class UserGroup extends BaseModel {
             'id' => $row['id'],
             'name' => $row['name'],
             'info' => $row['info'],
-            'created' => $row['created'],
-            'edited' => $row['edited'],
+            'created' => date('d-m-Y', strtotime($row['created'])),
+            'edited' => date('d-m-Y', strtotime($row['edited'])),
             'memberCount' => sizeof($memberships)
         ));
     }

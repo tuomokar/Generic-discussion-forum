@@ -46,8 +46,8 @@ class Thread extends BaseModel {
             $posts[] = new Post(array(
                 'id' => $row['id'],
                 'message' => nl2br($row['message']),
-                'created' => $row['created'],
-                'edited' => $row['edited'],
+                'created' => date('d-m-Y H:i:s', strtotime($row['created'])),
+                'edited' => date('d-m-Y H:i:s', strtotime($row['edited'])),
                 'creatorId' => $row['user_id'],
                 'creator' => $row['creator'],
                 'numberInThread' => $i + 1
