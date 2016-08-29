@@ -13,7 +13,7 @@ class UserController extends BaseController {
     }
 
     public static function edit($id) {
-        self::userLoggedIn();       // add validation that the user trying to edit is either admin or the user the profile belongs to
+        self::adminOrCreator();
 
         $user = User::find($id);
         View::make('users/user_edit.html', array('user' => $user));
@@ -47,7 +47,7 @@ class UserController extends BaseController {
     }
 
     public static function update($id) {
-        self::userLoggedIn();   // add validation that the user trying to edit is either admin or the user the profile belongs to;
+        self::adminOrCreator();
 
         $params = $_POST;
 
