@@ -42,11 +42,9 @@
         <div class="collapse navbar-collapse" id="navigation">
           <div class="nav navbar-nav navbar-right">
             {% if not currentUser %}
-            <form method="post" action="{{base_path}}/login">
-              <input name="username" type="text" placeholder="Username">
-              <input name="password" type="text" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Log in">
-            </form>
+
+            {{ forms.login("#{base_path}/login") }}
+
             {% else %}
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

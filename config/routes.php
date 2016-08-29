@@ -161,3 +161,7 @@ $routes -> post('/login', function() {
 $routes -> post('/logout', function() {
     SessionController::logout();
 });
+
+$routes -> get('/login', function() {
+    Redirect::to('/');
+});

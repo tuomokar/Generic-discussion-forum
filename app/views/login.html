@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% import "macros/forms.html" as forms %}
+{% import "macros/loops.html" as loops %}
+
+<div><h1>Login</h1></div>
+
+{{ loops.errors("#{errors}") }}
+
+<div>
+    {{ forms.login("#{base_path}/login") }}
+</div>
+
+{% endblock %}

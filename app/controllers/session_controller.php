@@ -4,14 +4,14 @@ class SessionController extends BaseController {
 
     public static function login() {
         $params = $_POST;
-
         $user = User::authenticate($params['username'], $params['password']);
 
-        if ($user) {
-            $_SESSION['user'] = $user -> id;
-            Redirect::to('/', array('message' => 'Welcome back, ' . $user -> username));
+        if (!$user) {
+            View::make('login.html', array('message' => "Gave wrong password or username"));
         }
-        // render login page if failed
+
+        $_SESSION['user'] = $user -> id;
+        Redirect::to('/', array('message' => 'Welcome back, ' . $user -> username));
     }
 
     public static function logout() {

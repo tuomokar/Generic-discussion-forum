@@ -51,3 +51,11 @@
     </form>
 </div>
 {% endmacro %}
+
+{% macro login(action) %}
+<form method="post" action={{action}}>
+    <input name="username" type="text" placeholder="Username">
+    <input name="password" type="text" placeholder="Password">
+    <input type="submit" class="btn btn-default" value="Log in">
+</form>
+{% endmacro %}
