@@ -127,6 +127,8 @@ img {
 .thread-info-on-right {
   width: 7%;
   float: right;
+
+  word-wrap: break-word;
 }
 .edit-info {
   font-size: xx-small;
