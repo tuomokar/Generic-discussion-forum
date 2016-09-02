@@ -35,7 +35,6 @@ class Post extends BaseModel {
             'threadId' => $row['thread_id'],
             'creator' => $row['creator'],
             'thread' => $row['thread']
-            // if possible, include also the info on the number of the post within the thread here
         ));
     }
 
@@ -68,11 +67,39 @@ class Post extends BaseModel {
         $this -> setThreadId($query);
     }
 
+    // if the post was the first one and thus also the thread is deleted, returns the post's thread's topic group id
+    // otherwise returns null
     public function destroy() {
+        $topicGroupId = $this -> deleteThreadIfFirstPost();
         $query = DB::connection() -> prepare('DELETE FROM post WHERE id = :id RETURNING thread_id');
         $query -> execute(array('id' => $this -> id));
 
         $this -> setThreadId($query);
+
+        return $topicGroupId;
+    }
+
+    private function deleteThreadIfFirstPost() {
+        $query = DB::connection() -> prepare('SELECT p.id, p.thread_id, t.topic_group_id FROM thread t, post p WHERE t.id = p.thread_id AND t.id = (SELECT thread_id FROM post WHERE id = :id) LIMIT 1');
+        $query -> execute(array('id' => $this -> id));
+
+        $row = $query -> fetch();
+        if ($this -> notThreadCreator($row)) {
+            return null;
+        }
+        $this -> threadId = $row['thread_id'];
+        $this -> removeThread($row);
+
+        return $row['topic_group_id'];
+    }
+
+    private function notThreadCreator($row) {
+        return !$row || $row['id'] != $this -> id;
+    }
+
+    private function removeThread() {
+        $query = DB::connection() -> prepare('DELETE FROM thread WHERE id = :id');
+        $query -> execute(array('id' => $this -> threadId));
     }
 
     private function setThreadId($query) {

@@ -68,7 +68,11 @@ class PostController extends BaseController {
             'id' => $id
         ));
 
-        $post-> destroy();
+        $topicGroupId = $post-> destroy();
+
+        if ($topicGroupId) {
+            Redirect::to('/topic-groups/' . $topicGroupId, array('message' => 'Post deleted successfully, along with its thread'));
+        }
 
         Redirect::to('/threads/' . $post -> threadId, array('message' => 'Post deleted successfully'));
     }

@@ -70,7 +70,7 @@ class User extends BaseModel {
     }
 
     public function destroy() {
-        $this -> deleteThreadsOfUser($this -> id);      // this could be done in easier / more efficient way maybe?
+        $this -> deleteThreadsOfUser($this -> id);
         $query = DB::connection() -> prepare('DELETE FROM forum_user WHERE id = :id');
         $query -> execute(array('id' => $this -> id));
     }
