@@ -30,7 +30,7 @@ class Post extends BaseModel {
             'id' => $id,
             'message' => nl2br($row['message']),
             'created' => date('d-m-Y H:i:s', strtotime($row['created'])),
-            'edited' => date('d-m-Y H:i:s', strtotime($row['edited'])),
+            'edited' => $row['edited'] ? date('d-m-Y H:i:s', strtotime($row['edited'])) : '',
             'creatorId' => $row['user_id'],
             'threadId' => $row['thread_id'],
             'creator' => $row['creator'],
