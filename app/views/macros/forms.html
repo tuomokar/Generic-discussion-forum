@@ -1,7 +1,7 @@
-{% macro destroyButton(action, divClass) %}
+{% macro destroyButton(action, divClass, text) %}
 <div class={{divClass}}>
     <form method="post" class="destroy-form" action="{{action}}">
-        <button type="submit" class="btn btn-danger">Remove</button>
+        <button type="submit" class="btn btn-danger">{{text|default('Remove')}}</button>
     </form>
 </div>
 {% endmacro %}
