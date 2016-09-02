@@ -26,6 +26,24 @@
     {{forms.destroyButton("#{base_path}/users/#{user.id}/destroy")}}
 
     {% endif %}
+
+
+    <div class="margin-up">
+        {% if user.posts %}
+
+        <h3>Post history:</h3>
+
+        {% for post in user.posts  %}
+        <blockquote>
+            <h6>In thread {{post.threadName}}, {{ post.created}}</h6>
+            <a href="{{base_path}}/threads/{{post.threadId}}#post_{{post.id}}">{{post.message | truncate(40, true) }}</a>
+        </blockquote>
+        {% endfor %}
+
+        {% else %}
+        <p>The user doesn't have any posts yet</p>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}

@@ -2,7 +2,7 @@
 
 class User extends BaseModel {
 
-    public $id, $username, $password, $passwordConfirmation, $newPassword, $info, $admin, $created, $edited, $postCount;
+    public $id, $username, $password, $passwordConfirmation, $newPassword, $info, $admin, $created, $edited, $postCount, $posts;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -46,16 +46,39 @@ class User extends BaseModel {
             return null;
         }
 
-        return new User(array(
+        $user = new User(array(
             'id' => $row['id'],
             'username' => $row['username'],
             'info' => $row['info'],
             'admin' => $row['admin'],
-            'created' => date('d-m-Y', strtotime($row['created'])),
+            'created' => date('d-m-Y', strtotime($row['created']))
         ));
+
+        $user -> posts = $user -> findPosts();
+        return $user;
     }
 
-    // password not salted yet etc etc
+    private function findPosts() {
+        $query = DB::connection() -> prepare('SELECT p.id, p.message, p.thread_id, p.created, t.title AS thread_name FROM post p, thread t WHERE p.user_id = :id AND p.thread_id = t.id');
+        $query -> execute(array('id' => $this -> id));
+
+        $rows = $query -> fetchAll();
+
+        $posts = array();
+        foreach ($rows as $row) {
+            $posts[] = new Post(array(
+                'id' => $row['id'],
+                'message' => $row['message'],
+                'threadId' => $row['thread_id'],
+                'created' => date('d-m-Y H:i:s', strtotime($row['created'])),
+                'threadName' => $row['thread_name']
+            ));
+        }
+
+        return $posts;
+    }
+
+    // password not hashed and salted yet
     public function save() {
         $query = DB::connection() -> prepare('INSERT INTO forum_user (username, info, password, created) VALUES (:username, :info, :password, CURRENT_DATE) RETURNING id');
         $query -> execute(array('username' => $this -> username, 'info' => $this -> info, 'password' => $this -> password));

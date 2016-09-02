@@ -2,7 +2,7 @@
 
 class Post extends BaseModel {
 
-    public $id, $message, $created, $edited, $userId, $threadId, $creator, $creatorId, $thread, $numberInThread;
+    public $id, $message, $created, $edited, $userId, $threadId, $creator, $creatorId, $thread, $numberInThread, $threadName;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
