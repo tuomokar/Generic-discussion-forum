@@ -13,7 +13,7 @@ class UserController extends BaseController {
     }
 
     public static function edit($id) {
-        self::adminOrCreator();
+        self::adminOrCreator($id);
 
         $user = User::find($id);
         View::make('users/user_edit.html', array('user' => $user));
@@ -47,7 +47,7 @@ class UserController extends BaseController {
     }
 
     public static function update($id) {
-        self::adminOrCreator();
+        self::adminOrCreator($id);
 
         $params = $_POST;
 
